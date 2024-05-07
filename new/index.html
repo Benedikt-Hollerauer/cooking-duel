@@ -8,22 +8,40 @@
 
 <body>
     <form id="regForm" action="/action_page.php">
-        <h1>Register:</h1>
+        <h1>Kochduell</h1>
         <!-- One "tab" for each step in the form: -->
-        <div class="tab">Name:
-            <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
-            <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
+        <div class="tab">
+            <label for="num-fields"><b>Wer kocht mit?</b></label>
+            <input type="range" id="num-fields" min="2" max="12" value="2">
+            <div id="dynamic-fields"></div>
         </div>
-        <div class="tab">Contact Info:
-            <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
-            <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
+        <div class="tab">
+            <b>Welche Gerichte sollen es sein?</b>
+            <select id="dropdown-input" name="dropdown-input">
+                <option value="starter">Vorspeise</option>
+                <option value="intermediate-course">Zwischengang</option>
+                <option value="main-course">Hauptgang</option>
+                <option value="dessert">Nachspeise</option>
+            </select>
         </div>
-        <div class="tab">Birthday:
+        <div class="tab">
+            <b>Was muss alles getan werden?</b>
             <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
             <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
             <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
         </div>
-        <div class="tab">Login Info:
+        <div class="tab">
+            <b>Länderauswahl</b>
+            <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+            <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+        </div>
+        <div class="tab">
+            <b>Wo soll das Kochduell stattfinden?</b>
+            <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+            <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+        </div>
+        <div class="tab">
+            <b>Wann soll es stattfinden?</b>
             <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
             <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
         </div>
@@ -35,6 +53,9 @@
         </div>
         <!-- Circles which indicates the steps of the form: -->
         <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>

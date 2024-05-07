@@ -70,3 +70,18 @@ function fixStepIndicator(n) {
     //... and adds the "active" class on the current step:
     x[n].className += " active";
 }
+
+const numFieldsInput = document.getElementById('num-fields');
+const dynamicFieldsDiv = document.getElementById('dynamic-fields');
+
+numFieldsInput.addEventListener('input', () => {
+  const numFields = numFieldsInput.value;
+  dynamicFieldsDiv.innerHTML = '';
+
+  for (let i = 0; i < numFields; i++) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = `Field ${i + 1}`;
+    dynamicFieldsDiv.appendChild(input);
+  }
+});
