@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="jquery-2.2.4.js"></script>
+ <link rel="stylesheet" type="text/css" href="App.css" media="screen" />
+	<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+	// alle Elemente mit aria-expanded=true werden zugeklappt
+	var acc = document.querySelectorAll('[aria-expanded="true"]'),
+		index;
+	for (index = 0; index < acc.length; index++) {
+/*		alert(1); */
+		acc[index].setAttribute('aria-expanded', false);
+		var panel = acc[index].nextElementSibling;
+		var hidden = (panel.getAttribute('aria-hidden') == 'false' || false) ? true :
+			false;
+		panel.setAttribute('aria-hidden', hidden);
+	}
+	//nur ein EventHandler f&uuml;r das gesamte Accordion
+	var acc = document.getElementById('accordion');
+	acc.addEventListener('click', clickHandler);
+
+	function clickHandler(elem) {
+		// Wo wurde geklickt?
+		var target = elem.target;
+		// Toggle den aria-expanded-Zustand
+		var state = (target.getAttribute('aria-expanded') == 'false' || false) ?
+			true : false;
+		target.setAttribute('aria-expanded', state);
+		// Aus-/ Einklappen
+		var panel = target.nextElementSibling;
+		var hidden = (panel.getAttribute('aria-hidden') == 'false' || false) ?
+			true : false;
+		panel.setAttribute('aria-hidden', hidden);
+	}
+});
+	/* <![CDATA[ */	
+/*var hallo = "Kochduell App";
+ alert(hallo);*/
+
+	</script>
+<head>
+	<title>Kochduell / FAQ</title> 
+</head><body>
+ <main id="accordion">
+ <p style="vertical_align: top" align="center">FAQ zum Kochduell</p>
+<table border="0" width="100%">
+	<tr><td align="center" name="Wer">
+			<!--                                         Allgemeines                                     -->
+		<button aria-expanded="true" aria-controls="collapsible-1" style=" width: 50%;">Allgemeines</button>
+			<div id="collapsible-1" aria-hidden="false">
+			<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Was ist der Sinn hinter dem Kochduell?</button>
+				<div id="Algemeines_1" aria-hidden="false">
+				<p> Es oll einfach gemeinsam gekocht werden. <br>
+					Es soll Spaﬂ machen, zusammen etwas neues auszuprobieren und seinen Kulinarischen Horizont, sofern gewollt zu erweitern.</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Algemeines 2</button>
+				<div id="Algemeines_2" aria-hidden="false">
+				<p>Algemeines 2</p>
+				</div>
+								<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Algemeines 3</button>
+				<div id="Algemeines_3" aria-hidden="false">
+				<p>Algemeines 3</p>
+				</div>
+								<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Algemeines 4</button>
+				<div id="Algemeines_4" aria-hidden="false">
+				<p>Algemeines 4</p>
+				</div>
+								<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Algemeines 5</button>
+				<div id="Algemeines_5" aria-hidden="false">
+				<p>Algemeines 5</p>
+				</div>
+		</div><br>
+		<!--                                         Technisches                                        -->
+		<button aria-expanded="true" aria-controls="collapsible-1" style=" width: 50%;">Technisches</button>
+			<div id="collapsible-1" aria-hidden="false">
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Technisches 1</button>
+				<div id="Technisches_1" aria-hidden="false">
+				<p>Technisches 1</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Technisches 2</button>
+				<div id="Technisches_2" aria-hidden="false">
+				<p>Technisches 2</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Technisches 3</button>
+				<div id="Technisches_3" aria-hidden="false">
+				<p>Technisches 3</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Technisches 4</button>
+				<div id="Technisches_4" aria-hidden="false">
+				<p>Technisches 4</p>
+				</div>
+		</div><br>
+		<!--                                         Reklamationen                                      -->
+		<button aria-expanded="true" aria-controls="collapsible-1" style=" width: 50%;">Reklamationen</button>
+		<div id="collapsible-1" aria-hidden="false">
+						<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Reklamationen 1</button>
+				<div id="Reklamationen_1" aria-hidden="false">
+				<p>Reklamationen 1</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Reklamationen 2</button>
+				<div id="Reklamationen_2" aria-hidden="false">
+				<p>Reklamationen 2</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Reklamationen 3</button>
+				<div id="Reklamationen_3" aria-hidden="false">
+				<p>Reklamationen 3</p>
+				</div>
+				<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 51%;">Reklamationen 4</button>
+				<div id="Reklamationen_4" aria-hidden="false">
+				<p>Reklamationen 4</p>
+				</div>
+		</div>
+	</td></tr>
+</table>
+ </main> 
+	<div style="position:bottom;"><table><tr><td><a href="App.html">Startseite</a></td><td><a href="App_imp.html">Impressum</a></td><td><a href="App_kon.html">Kontakt</a></td></tr></table></div>
+</body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="jquery-2.2.4.js"></script>
+ <link rel="stylesheet" type="text/css" href="App.css" media="screen" />
+<script type="text/javascript">
+
+function send(){
+	var wer = $('input#wer').val();
+	var email = $('input#email').val();
+	var input = $('textarea#message').val();
+	alert("Zusammenfassung --> " + wer + ", " + email + ", " + input);
+	//alert("mailto:davidpatuschka@gmail.com?cc="+email+'&subject=Kontakt für Kochduell von '+wer+'&body='+input);
+}
+function sendEmail(){
+	var wer = $('input#wer').val();
+	var email = $('input#email').val();
+	var input = $('textarea#message').val();
+	window.location.href = "mailto:someone@example.com?cc="+email+"&subject=Kochduell Kontakt: "+wer+"&body="+input;
+	//alert("mailto:someone@example.com?cc="+email+'&subject=Kochduell Kontakt: '+wer+'&body='+input+);
+	alert("mailto:someone@example.com?cc="+email+"&subject=Kochduell Kontakt: "+wer+"&body="+input);
+    }
+	</script>
+    </style>
+</head>
+<body>
+	<title>Kochduell / Kontakt</title> 
+ <main id="accordion">
+ <div>
+		<p>Anregungen / Verbesserungsvorschläge etc. <br> Wir sind offen für jegliche Kritik (positiv wie negativ) </p>
+		<table style=" width: 50%; height:100%;" border="0" align="center">
+		<tr><td style=" width: 25%;"><label style="float:left;"> Vor- und Zuname:</label></td>
+		<td style=" width: 25%;"><input name="wer" id="wer" maxlength="30" type="visible" value="David Patuschka" style="float:left;"></td></tr>
+		<tr><td style=" width: 25%;"><label style="float:left;"> E-Mail Adresse:</label></td>
+		<td style=" width: 25%;"><input name="email" id="email" maxlength="30" type="email" placeholder="Bitte Text eingeben" value="davidpatuschka@gmail.com" style="float:left;"></td></tr>
+		<tr><td style="vertical-align:top"><label style="float:left;"> Um was geht es?</label></td>
+		<td style="float:left; width: 98%"><textarea style=" width: 100%; height:150px; max-width: 450px" id="message" name="message" placeholder="Bitte Text eingeben, mehrere Mailadressen bitte mit Semikolon ';' trennen" required="required" data-minlength="20"></textarea>
+		</td></tr>
+		<tr><td colspan="2"> <button style="float:right;" onclick="send()">senden !</button><button style="float:right;" onclick="sendEmail()">senden 2</button></td></tr>
+		</table>
+	</div>	
+	<div style="position:bottom;">
+	<table style=" width: 50%;" border="0" align="center"><tr><td><a href="App.html">Startseite</a></td><td><a href="App_faq.html">FAQ</a></td><td><a href="App_kon.html">Kontakt</a></td></tr></table></div>
+</body>
+
+</html>

@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="jquery-2.2.4.js"></script>
+ <link rel="stylesheet" type="text/css" href="App.css" media="screen" />
+	<script type="text/javascript">
+'use strict';
+function Auswahl_Art() {
+		var Art = document.getElementById('Art');		
+	  alert("Art --> " + Art);
+	//  var Art2 = ;	
+	//  alert("Art 2 --> " + Art2);
+	}
+	function myFunction() {
+	 alert("1 Art --> "+ Art);
+	var Art = document.getElementById('Art');	
+  alert(document.getElementById('Art'));
+ 	/*var Art = parseFloat(jQuery("#Art").val());*/
+	// = document.write(list)
+}
+function zus(){
+var zusammenfassung_Zahl = 0;
+var Test = "123-HoHohooo";
+////// Art ////////
+//	alert("111");
+//document.getElementById("mail2").style.display = "block";
+var Art = document.getElementById('Art');
+//    alert("Art --> " + Art);
+//    alert("Art.innerHTML --> " + Art.innerHTML);
+var selected_Art = $('select#Art').val();
+//	alert("selected --> " + selected);
+var list = '<a> Dies wurde von Ihnen f&uuml;r das Kochduell gew&auml;hlt:</a>';
+var list = list +  '<ul><li>Diese Art an Gerichten wurden ausgew&auml;hlt:<ul><li>&bull; ' + selected_Art + '</li></ul></li></ul>';
+//	alert("List --> " + list);
+		////// Anzahl ////////
+var Tln_a = 'wer';
+var Tln_Anz = document.getElementById('Anz');
+var Tln_selected_Anz = $('select#Anz').val(); 
+//alert('Tln_selected_Anz --> '+Tln_selected_Anz);
+var Tln_anz_schleife = Tln_selected_Anz ++;
+var Tln_anz_ = Tln_selected_Anz;
+var Tln_selected_Anz_minus = Tln_selected_Anz - 1;
+//var list = list + '<ul><li>Es kochen folgende Anzahl an Personen mit:<ul><li>&bull; ' + Tln_selected_Anz_minus + '</li></ul></li></ul>';
+var list = list + '<ul><li>Es kochen folgende '+ Tln_selected_Anz_minus +' Personen mit: ';
+var Anzeige_Mail = '';
+var Tln_leer = 0;
+
+	//alert('Tln_selected_Anz --> ' + Tln_selected_Anz);
+	//alert('Tln_selected_Anz_minus--> ' + Tln_selected_Anz_minus);
+var Tln_gefuellt = -1;
+for (var i = 0; i < 5; i++) {
+	var Tln_a = 'wer'+i;
+	//alert('Tln_a --> ' + Tln_a);
+	var Tln_wer = document.getElementById(Tln_a);
+	//alert('wer --> ' + Tln_wer);
+	var Tln_selected_wer = $('input#'+Tln_a).val();
+	//alert('selected_wer --> ' + Tln_selected_wer + ' - '+ i);
+	if (Tln_selected_wer != ''){
+		Tln_gefuellt++;
+		//alert('Tln_gefuellt --> '+Tln_gefuellt);
+		}
+//alert('Tln_gefuellt--> ' + Tln_gefuellt);
+}
+if (Tln_gefuellt > Tln_selected_Anz_minus){
+		alert('Sie haben ' + Tln_selected_Anz_minus + ' Teilnehmer ausgew&auml;hlt, aber ' + Tln_gefuellt + ' Teilnehmer eingetragen. Bitte korrigieren Sie Ihre Eingaben');
+		zusammenfassung_Zahl++;
+		}
+
+for (var i = 1; i < Tln_selected_Anz; i++) {
+	var Tln_a = 'wer'+i;
+	//alert('Tln_a --> ' + Tln_a);
+	var Tln_wer = document.getElementById(Tln_a);
+	//alert('wer --> ' + Tln_wer);
+	var Tln_selected_wer = $('input#'+Tln_a).val();
+	//alert('selected_wer --> ' + Tln_selected_wer);
+	var list = list + '<ul><li>&bull; ' + Tln_selected_wer + '</li></ul>';
+	if (Tln_selected_wer == ''){
+		Tln_leer++;
+		//alert('Tln_leer --> '+Tln_leer);
+		}
+    if (i < Tln_selected_Anz_minus) {
+	//alert('IF i --> ' + i);
+	  var Anzeige = ', ';
+	//alert('Tln_selected_wer --> ' + Tln_selected_wer);
+	  }
+	  else {
+	  var Anzeige = '';
+	}
+	var Anzeige_Mail = Anzeige_Mail + Tln_selected_wer + Anzeige;
+	}
+	//alert('Tln_benamt --> ' + Tln_benamt + ' / Tln_selected_Anz_minus --> ' +Tln_selected_Anz_minus);
+	//alert('Tln_leer '+Tln_leer);
+	//alert('Tln_selected_Anz_minus--> ' + Tln_selected_Anz_minus);
+	if (Tln_leer != 0){
+	alert('Bitte die Namen der Teilnehmer pflegen!');
+	zusammenfassung_Zahl++;
+		//alert('zusammenfassung_Zahl --> '+ zusammenfassung_Zahl);
+		}
+	var list = list + '</li></ul>';
+	//alert('list --> ' + list);
+//alert(list);
+		////// Gaenge_Anz ////////
+var gaenge_Anz = document.getElementById('gaenge_Anz');
+var selected_Anz = $('select#gaenge_Anz').val();
+//var list = list + '<ul><li>Es soll die folgende Anzahl an G&auml;nge gekocht werden:<ul><li>&bull; ' + selected_Anz + '</li></ul></li></ul>';
+var gaenge_Art = document.getElementById('gaenge_Art');
+var selected_gaenge_Art = $('select#gaenge_Art').val();
+var list = list + '<ul><li>Diese G&auml;nge wurden gew&auml;hlt:<ul><li>&bull; ' + selected_gaenge_Art + '</li></ul></li></ul>';
+var selected_Anz_schleife = selected_Anz ++;
+		////// ToDo ////////
+var todo = document.getElementById('todo');
+var selected_todo = $('select#todo').val();
+var list = list + '<ul><li>Es muss folgende getan werden:<ul><li>&bull; ' + selected_todo + '</li></ul></li></ul>';
+	//alert("List --> " + list);
+		////// Laender ////////
+var Laender_ausw = document.getElementById('Laender_ausw');
+var selected_Laender_ausw = $('select#Laender_ausw').val();
+var list = list + '<ul><li>Folgende Kategorie wurde gew&auml;hlt <ul><li>&bull; ' + selected_Laender_ausw + '</li></ul></li></ul>';
+var IF_01 = 'national / Deutschland';
+var europ = 'europ&auml;isch';
+var internat = 'international';
+var Land_bitte = 'Bitte Land ausw&auml;hlen';
+var zusammenfassung = 'OK';
+var Laender_vorausw = document.getElementById('Laender_vorausw');
+var selected_Laender_vorausw = $('select#Laender_vorausw').val();
+	if (selected_Laender_vorausw == 'Alle kochen aus einem Land'){	
+		if (selected_Laender_ausw == 'europ&auml;isch'){
+			var Laender = document.getElementById('Laender');
+			var selected_Laender = $('select#Laender').val();
+			if (selected_Laender == 'Bitte Land ausw&auml;hlen'){
+				alert('W&auml;hlen Sie bitte ein Land aus!');
+				zusammenfassung_Zahl++;
+				var zusammenfassung = 'STOP';		
+			}
+			else
+			{
+				var list = list + '<ul><li>Das Essen kommt aus folgendem Land/folgenden L&auml;ndern:<ul><li>&bull; ' + selected_Laender + '</li></ul></li></ul>';		
+			}
+		}
+		if (selected_Laender_ausw == 'international'){
+			var Auswahl_Land = '';
+			var Laender_int = document.getElementById('Laender_int');
+			var selected_Laender = $('select#Laender_int').val();
+			if (selected_Laender == 'Bitte Land ausw&auml;hlen'){
+				alert('W&auml;hlen Sie bitte ein Land aus!');
+				zusammenfassung_Zahl++;
+				var zusammenfassung = 'STOP';
+			}
+			else
+			{
+				var list = list + '<ul><li>Das Essen kommt aus folgendem Land/folgenden L&auml;ndern:<ul><li>&bull; ' + selected_Laender + '</li></ul></li></ul>';		
+			}
+		}
+
+	}
+	if (selected_Laender_vorausw == 'Jeder Teilnehmer bekommt ein Land'){	
+		if (selected_Laender_ausw == 'europ&auml;isch'){
+			var Laender = document.getElementById('Laender');
+			var selected_Laender = $('select#Laender').val();	
+			var list = list + '<ul><li>Das Essen kommt zuf&auml;llig aus:<ul><li>&bull;Europa</li></ul></li></ul>';
+		}
+		if (selected_Laender_ausw == 'international'){
+			var Auswahl_Land = '';
+			var Laender_int = document.getElementById('Laender_int');
+			var selected_Laender = $('select#Laender_int').val();
+			var list = list + '<ul><li>Das Essen kommt zuf&auml;llig aus:<ul><li>&bull;dem Internationalen Raum</li></ul></li></ul>';
+		}
+	}
+
+	//alert("List --> " + list);
+			////// Wo ////////
+var Standort = document.getElementById('Standort');
+var selected_Standort = $('input#Standort').val();
+var list = list + '<ul><li>Das Kochduell findet in folgendem Haushalt statt: <ul><li>&bull; ' + selected_Standort + '</li></ul></li></ul>';
+if (selected_Standort == ''){
+	alert("Bitte den Koch-Ort f&uuml;llen");
+	zusammenfassung_Zahl++;
+}
+
+//	alert("List --> " + list);
+			////// Wann ////////
+var datum = document.getElementById('datum');
+var selected_datum = $('input#datum').val();
+if (selected_datum == ''){
+	var list = list + '<ul><li>Es wurde noch kein Datum festgelegt</li></ul>';
+	var mailsenden_Betreff = 'Kochduell im Hause '+selected_Standort;
+		//alert("IF");
+	//alert("Bitte das Datum f&uuml;llen");
+	//zusammenfassung_Zahl++;
+}
+else {
+	//alert("Else");
+	var list = list + '<ul><li>Das Kochduell findet an folgendem Datum statt:<ul><li>&bull; ' + selected_datum + '</li></ul></li></ul>';
+	var mailsenden_Betreff = 'Kochduell am '+selected_datum+' im Hause '+selected_Standort;
+}
+			////// Uhrzeit ////////
+var uhrzeit = document.getElementById('uhrzeit');
+var selected_uhrzeit= $('input#uhrzeit').val();
+if (selected_uhrzeit == ''){
+	var list = list + '<ul><li>Es wurde noch keine Uhrzeit festgelegt</li></ul>';
+		//alert("IF");
+	//alert("Bitte das Datum f&uuml;llen");
+	//zusammenfassung_Zahl++;
+}
+else {
+	//alert("Else");
+	var list = list + '<ul><li>Das Kochduell findet zur folgenden Uhrzeit statt:<ul><li>&bull; ' + selected_uhrzeit + '</li></ul></li></ul>';
+
+}
+//	alert("List --> " + list);
+			////// ueberraschung ////////
+var ueber = document.getElementById('ueber');
+var selected_ueber = $('select#ueber').val();
+var list = list + '<ul><li>Soll die Zulosung eine &uuml;berraschung sein:<ul><li>&bull; ' + selected_ueber + '</li></ul></li></ul>';
+var mailsenden_Body = 'Hallo zusammen,%0A%0Aihr habt euch entschieden ein Kochduell durchzuf&uuml;hren.';
+var mailsenden_Body = mailsenden_Body + '%0A%0AEs werden ' + selected_Art + ' gekocht.';
+/////////////////////////////////////////
+var mailsenden_Body = mailsenden_Body + '%0A%0AEs kochen mit: '+ Anzeige_Mail;
+/////////////////////////////////////////
+var mailsenden_Body = mailsenden_Body + '%0A%0AAls G&auml;nge wurde sich auf ' + selected_gaenge_Art + ' geeinigt.';
+var mailsenden_Body = mailsenden_Body + '%0A%0A ' + selected_todo + ' soll der Koch durchf&uuml;hren.';
+var mailsenden_Body = mailsenden_Body + '%0A%0ADas Essen soll aus der Region ' + selected_Laender_ausw + ' gekocht werden';
+if (selected_Laender_ausw != IF_01){
+	//alert('In der IF');
+	var mailsenden_Body = mailsenden_Body + ' und aus dem Land ' + selected_Laender + ' kommen.';
+} 
+	else {
+	var mailsenden_Body = mailsenden_Body + '.';
+	//alert('Im ELSE');
+	}
+var mailsenden_Body = mailsenden_Body + '%0A%0AIhr habt euch geeinigt, dass das Kochduell bei/in ' + selected_Standort + ' stattfinden soll.';
+if (selected_datum == ''){
+if (selected_uhrzeit == ''){
+	var mailsenden_Body = mailsenden_Body + '%0A%0AEs wurde noch kein Datum und keine Uhrzeit festgelegt. ';
+}
+else{
+	var mailsenden_Body = mailsenden_Body + '%0A%0AEs wurde noch kein Datum festgelegt, es soll aber um ' + selected_uhrzeit +' beginnen. ';
+}
+}
+else{
+if (selected_uhrzeit == ''){
+	var mailsenden_Body = mailsenden_Body + '%0A%0AEs wird am ' + selected_datum + ' durchgef&uuml;hrt.';
+}
+else {
+		var mailsenden_Body = mailsenden_Body + '%0A%0AEs wird am ' + selected_datum + ' durchgef&uuml;hrt und ';
+var mailsenden_Body = mailsenden_Body + 'beginnt um ' + selected_uhrzeit + '.';
+}
+}
+var mailsenden_Body = mailsenden_Body + '%0A%0A%0A%0AWir w&uuml;nschen Dir/euch viel Spa&szlig; beim Kochen und bedanken uns, %0Adass Du/ihr diese App ';
+var mailsenden_Body = mailsenden_Body + 'downgeloaded hast/habt und freuen uns auf eine Gute Bewertung :)';
+var mailsenden_an = document.getElementById('mailadresse');
+//alert('mailsenden_an --> '+mailsenden_an);
+var Empfaenger = $('input#mailadresse').val();
+//alert('E-Mail Adresse ist leer: --> ' +Empfaenger);	
+if(Empfaenger == ''){
+	alert('E-Mail Adresse ist leer, Bitte Nachtragen!');	
+	zusammenfassung_Zahl++;
+}
+//var Empfaenger = document.getElementById("adress").action = "mailto:"+input_new;
+//alert('E-Mail Adress: --> ' +Empfaenger);
+//alert('test --> '+mailsenden_an);
+var mailsenden = '<a href="mailto:'+Empfaenger+'?subject='+mailsenden_Betreff+'&amp;';
+//var mailsenden = '<a href="mailto:max.muster@domain.de?subject=Hier%20steht%20der%20Betreff&body=Hallo%20Max,%0D%0A%0D%0Ahier%20steht%20die%20Nachricht">';
+var mailsenden = mailsenden + 'body='+mailsenden_Body+'">';
+var mailsenden = mailsenden + 'Mail mit Betreff und Body senden</a>';
+//// Abschluss der Liste! ///////
+var list = list + '<button onclick="javascript:location.reload()">Eingaben korrigieren</button><br><br>';
+var list = list + '<button type="submit" onclick="test()">Auswahl zuf&auml;llig verteilen !!! MUS NOCH GEMACHT WERDEN !!!</button>';
+var list = list + '<button type="submit" onclick="ok()">Best&auml;tigen und drucken !!! MUS NOCH GEMACHT WERDEN !!!</button><br><br>';
+//var list = list + '<button type="submit" onclick="mail()">Best&auml;tigen und Mail versenden</button>';
+//var list = list + '<div id="mail" style="display: none;"><label> E-Mail Adresse </label>';
+//var list = list + '<input name="mailadresse" id="mailadresse" type="visible"><a> !Mehrfachauswahl bitte mit Semikolon (;) trennen </a><br><br>';
+//var list = list + '<form id="adress" action="mailto:email"><button onclick="send()">senden</button></form><br>';
+//var list = list + '<button type="submit" onclick="testemailsafe()">Testmail</button><br>';
+var list = list + mailsenden;
+var list = list + '</div>';
+var list = list + '';
+var list = list + '';
+//var list = list + mailsenden;
+//alert('zusammenfassung_Zahl --> ' + zusammenfassung_Zahl);
+//alert('Test');
+if (zusammenfassung_Zahl != 0){
+
+var text = '';
+//alert('Bitte folgendes anpassen --> ');
+	
+	}
+if (zusammenfassung_Zahl == 0){
+//alert('zusammenfassung_Zahl IF --> ');
+	document.getElementById("output").innerHTML = document.write(list);
+	}
+
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+	// alle Elemente mit aria-expanded=true werden zugeklappt
+	var acc = document.querySelectorAll('[aria-expanded="true"]'),
+		index;
+	for (index = 0; index < acc.length; index++) {
+/*		alert(1); */
+		acc[index].setAttribute('aria-expanded', false);
+		var panel = acc[index].nextElementSibling;
+		var hidden = (panel.getAttribute('aria-hidden') == 'false' || false) ? true :
+			false;
+		panel.setAttribute('aria-hidden', hidden);
+	}
+	//nur ein EventHandler f&uuml;r das gesamte Accordion
+	var acc = document.getElementById('accordion');
+	acc.addEventListener('click', clickHandler);
+
+	function clickHandler(elem) {
+		// Wo wurde geklickt?
+		var target = elem.target;
+		// Toggle den aria-expanded-Zustand
+		var state = (target.getAttribute('aria-expanded') == 'false' || false) ?
+			true : false;
+		target.setAttribute('aria-expanded', state);
+		// Aus-/ Einklappen
+		var panel = target.nextElementSibling;
+		var hidden = (panel.getAttribute('aria-hidden') == 'false' || false) ?
+			true : false;
+		panel.setAttribute('aria-hidden', hidden);
+	}
+
+});
+function Laenderauswahl(){
+var Laender_ausw_01 = document.getElementById("Laender_ausw");
+var Laender_ausw_02 = $('select#Laender_ausw').val();
+var europ = 'europ&auml;isch';
+var inter = 'international';
+var national = 'national / Deutschland';
+var Laender_vorausw = document.getElementById('Laender_vorausw');
+var selected_Laender_vorausw = $('select#Laender_vorausw').val();
+if (selected_Laender_vorausw == 'Alle kochen aus einem Land'){
+////
+if (Laender_ausw_02 == europ){
+document.getElementById("Laender").style = "visibility: visible";
+document.getElementById("Laender_int").style = "visibility: hidden";
+} 
+if (Laender_ausw_02 == inter){
+document.getElementById("Laender").style = "visibility: hidden";
+document.getElementById("Laender_int").style = "visibility: visible";
+} 
+if (Laender_ausw_02 == national){
+document.getElementById("Laender").style = "visibility: hidden";
+document.getElementById("Laender_int").style = "visibility: hidden";
+}
+}
+else{
+document.getElementById("Laender_int").style = "visibility: hidden";
+document.getElementById("Laender").style = "visibility: hidden";
+}
+}
+function mail(){
+var mail = document.getElementById("mail").style.display = "block";
+}
+function send(){
+var input = document.getElementById("mailadresse");
+var input_new = $('input#mailadresse').val();
+var adress = document.getElementById("adress");
+var mailadresse_Art = document.getElementById("adress").action;
+mailadresse_Art = document.getElementById("adress").action = "mailto:";
+alert("4: " + mailadresse_Art);
+}
+function Laendervorauswahl(){
+var selected_Laender_vorausw = $('select#Laender_vorausw').val();
+if (selected_Laender_vorausw == 'Jeder Teilnehmer bekommt ein Land'){
+	//alert('Jeder Teilnehmer bekommt ein Land');
+	//$("option[value='"+Wuerfel_Teilnehmer+"']").attr('selected',false);
+	//alert('1: ' + $("option#natGER").val());
+	$("option#natGER").attr('disabled','disabled'); 
+	} else{
+	$("option#natGER").removeAttr('disabled','disabled'); 
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function ok(){
+//var gaenge_Art = document.getElementById('gaenge_Art');
+var Wuerfel_zus = "";
+var Tln_selected_Anz = $('select#Anz').val(); 
+//alert("Tln_selected_Anz: " + Tln_selected_Anz);
+var selected_gaenge_Art = $('select#gaenge_Art').val();
+var selected_Laender_vorausw = $('select#Laender_vorausw').val();
+var selected_Laender_ausw = $('select#Laender_ausw').val();
+var selected_Laender = $('select#Laender').val();
+var selected_Laender_int = $('select#Laender_int').val();
+//alert("selected_gaenge_Art: " + selected_gaenge_Art);
+///////////////////// TEST mit END!////////////////// Land_europa_13 Land_int_13
+//alert("selected_Laender: "+ $('select#Laender').val());
+///////////////////// TEST mit END!////////////////// Land_europa_13 Land_int_13
+if(selected_gaenge_Art == null){
+	alert("Sie haben keine Gerichte ausgew&auml;hlt!!! Bitte pr&uuml;fen.");
+	end();
+}
+var selected_gaenge_Anz = $('select#gaenge_Art').val().length; 
+//alert("selected_gaenge_Anz: " + selected_gaenge_Anz);
+var Wuerfel_Teilnehmer="";
+var Wuerfel_Land="";
+if(selected_gaenge_Anz < Tln_selected_Anz){
+if(selected_gaenge_Anz == 1){
+		alert("Sie haben " + selected_gaenge_Anz + " Gang und " + Tln_selected_Anz + " Teilnehmer gew&auml;hlt. Bitte nochmals pr&uuml;fen.");
+	end();
+}
+	alert("Sie haben " + selected_gaenge_Anz + " G&auml;nge und " + Tln_selected_Anz + " Teilnehmer gew&auml;hlt. Bitte nochmals pr&uuml;fen.");
+	end();
+}
+if(Tln_selected_Anz < selected_gaenge_Anz){
+if(selected_gaenge_Anz == 1){
+	alert("Sie haben " + Tln_selected_Anz + " Teilnehmer und " + selected_gaenge_Anz + " Gang gew&auml;hlt. Bitte nochmals pr&uuml;fen.");
+	end();
+}
+	alert("Sie haben " + Tln_selected_Anz + " Teilnehmer und " + selected_gaenge_Anz + " G&auml;nge gew&auml;hlt. Bitte nochmals pr&uuml;fen.");
+	end();
+}
+	for (var i = 0; i < Tln_selected_Anz ; i++) {
+			//////////////////////////////////   Teilnehmer W&uuml;rfel   //////////////////////////////////
+	//alert("i: "+ i);
+	var index = 1;
+			for (var i = 0; i < Tln_selected_Anz; i++) {
+			var Tln_gefuellt = -1;
+			//alert('index --> ' + index);
+			var Tln_a = 'wer'+index;
+			//alert('Tln_a --> ' + Tln_a);
+			var Tln_wer = document.getElementById(Tln_a);
+			//alert('wer --> ' + Tln_wer);
+			var Tln_selected_wer = $('input#'+Tln_a).val();
+			//alert('selected_wer --> ' + Tln_selected_wer);
+			//alert('selected_wer --> ' + Tln_selected_wer + ' - '+ index);
+			if (Tln_selected_wer != ''){
+				Tln_gefuellt++;
+				//alert('Tln_gefuellt --> '+Tln_gefuellt);
+				}
+			//alert('Tln_gefuellt--> ' + Tln_gefuellt);
+			index++; 
+			var selected_gaenge_Art = $('select#gaenge_Art').val();
+			//alert("selected_gaenge_Art: " + selected_gaenge_Art);
+			//alert("i: "+ i);
+			//////////////////////////////////   Teilnehmer W&uuml;rfel   //////////////////////////////////
+			//////////////////////////////////   G&auml;nge W&uuml;rfel   ///////////////////////////////////////
+ 			Wuerfel_Teilnehmer = "";
+			Wuerfel_Teilnehmer +=selected_gaenge_Art[Math.floor(Math.random()*selected_gaenge_Art.length)];
+			//alert("Wuerfel_Teilnehmer: " + Wuerfel_Teilnehmer);
+			var Test1 = document.getElementsByName('Hauptgang');
+			var Test2 = $('option#Hauptgang').text();	
+			$("option[value='"+Wuerfel_Teilnehmer+"']").attr('selected',false);	
+			if(i == 0){
+			//alert("i in der IF 1: " + i);
+				if(Wuerfel_Teilnehmer == 'Hauptgang'){
+					var Wuerfel_zus = Tln_selected_wer + " kocht den " + Wuerfel_Teilnehmer;
+				} else if(Wuerfel_Teilnehmer == 'Zwischengang'){
+					var Wuerfel_zus = Tln_selected_wer + " kocht den " + Wuerfel_Teilnehmer;
+				} else{
+					var Wuerfel_zus = Tln_selected_wer + " kocht die " + Wuerfel_Teilnehmer;
+				}
+				if(selected_Laender_vorausw == 'Jeder Teilnehmer bekommt ein Land'){
+					if(selected_Laender_ausw == 'europ&auml;isch'){
+						var Land_europa = ["Deutschland","Skandinavien","Polen","Be-Ne-Lux","Bro&szlig;britanien","&ouml;sterreich/Schweiz","Spanien/Portugal","Italien","Griechenland","Balkan","Frankreich","Tschechien/Slowakei","Ungarn/Rum&auml;nien"];
+						var Wuerfel_Land_europa = Land_europa[Math.floor(Math.random() * Land_europa.length)];
+						//alert("Wuerfel_Land_europa: " + Wuerfel_Land_europa);
+						var Wuerfel_zus = Wuerfel_zus + " aus " + Wuerfel_Land_europa;
+					}else if(selected_Laender_ausw == 'international'){
+						var Land_int = ["Afrika","Asien","Australien","Nordamerika","Russland","Skandinavien","S&uuml;damerika"];
+						var Wuerfel_Land_int = Land_int[Math.floor(Math.random() * Land_int.length)];
+						alert("Wuerfel_Land_int: " + Wuerfel_Land_int);
+						var Wuerfel_zus = Wuerfel_zus + " aus " + Wuerfel_Land_int;
+					}else{
+						alert("Jeder kocht aus eine eigenen Land und dann nur Deutschland gew&auml;hlt, dass bei&szlig;t sich :) Bitte &auml;ndern!");
+						end();
+					}
+				}	
+			}
+			else {
+			//alert("i in der Else 1: " + i);
+				if(Wuerfel_Teilnehmer == 'Hauptgang'){
+					var Wuerfel_zus = Wuerfel_zus + " //// " + Tln_selected_wer + " kocht den " + Wuerfel_Teilnehmer;
+				} else if(Wuerfel_Teilnehmer == 'Zwischengang'){
+					var Wuerfel_zus = Wuerfel_zus + " //// " + Tln_selected_wer + " kocht den " + Wuerfel_Teilnehmer;
+				} else{
+					var Wuerfel_zus = Wuerfel_zus + " //// " + Tln_selected_wer + " kocht die " + Wuerfel_Teilnehmer;
+				}
+				if(selected_Laender_vorausw == 'Jeder Teilnehmer bekommt ein Land'){
+					if(selected_Laender_ausw == 'europ&auml;isch'){
+						var Land_europa = ["Deutschland","Skandinavien","Polen","Be-Ne-Lux","Bro&szlig;britanien","&ouml;sterreich/Schweiz","Spanien/Portugal","Italien","Griechenland","Balkan","Frankreich","Tschechien/Slowakei","Ungarn/Rum&auml;nien"];
+						var Wuerfel_Land_europa = Land_europa[Math.floor(Math.random() * Land_europa.length)];
+						//alert("Wuerfel_Land_europa: " + Wuerfel_Land_europa);
+						var Wuerfel_zus = Wuerfel_zus + " aus " + Wuerfel_Land_europa;
+					}else if(selected_Laender_ausw == 'international'){
+						var Land_int = ["Afrika","Asien","Australien","Nordamerika","Russland","Skandinavien","S&uuml;damerika"];
+						var Wuerfel_Land_int = Land_int[Math.floor(Math.random() * Land_int.length)];
+						alert("Wuerfel_Land_int: " + Wuerfel_Land_int);
+						var Wuerfel_zus = Wuerfel_zus + " aus " + Wuerfel_Land_int;
+					}else{
+						alert("Jeder kocht aus eine eigenen Land und dann nur Deutschland gew&auml;hlt, dass bei&szlig;t sich :) Bitte &auml;ndern!");
+						end();
+					}
+				}	
+			}
+			//////////////////////////////////   G&auml;nge W&uuml;rfel   ///////////////////////////////////////
+			//////////////////////////////////   G&auml;nge Land     ///////////////////////////////////////
+			
+			if(i == 0){
+
+			}
+			else{
+				//
+			}
+		}
+		if(Tln_selected_wer == ""){
+				alert("Es sind keine Namen eingetragen. Bitte pr&uuml;fen!");
+				end();
+		}
+		if(selected_Laender_vorausw == 'Alle kochen aus einem Land'){
+		//alert("Alle Kochen aus einem Land");
+			if(selected_Laender_ausw == 'national / Deutschland'){
+				var Wuerfel_zus = Wuerfel_zus + " /// Alle kochen die Gerichte aus Deutschland";
+				//alert("Alle kochen aus einem Land --> national / Deutschland");
+			}else if(selected_Laender_ausw == 'europ&auml;isch'){
+				var Wuerfel_zus = Wuerfel_zus + " /// Alle kochen die Gerichte aus " + selected_Laender;
+				//alert("Alle kochen aus einem Land --> national / Deutschland");
+			}else{
+				var Wuerfel_zus = Wuerfel_zus + " /// Alle kochen die Gerichte aus " + selected_Laender_int;
+				//alert("Alle kochen aus einem Land --> national / Deutschland");
+			}
+		}else{
+			if(selected_Laender_ausw == 'national / Deutschland'){
+				alert("Jeder kocht aus eine eigenen Land und dann nur Deutschland gew&auml;hlt, dass bei&szlig;t sich :) Bitte &auml;ndern!");
+				end();
+			}
+		}
+			//////////////////////////////////   G&auml;nge Land     /////////////////////////////////////////
+
+			alert("Zusammenfassung: " + Wuerfel_zus);
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function selected(){
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function wuerfeln(){
+////////////////// Teilnehmer /////////////////////
+////////////////// Teilnehmer /////////////////////
+////////////////// G&auml;nge //////////////////////////
+var gaenge_Art = document.getElementById('gaenge_Art');
+
+var selected_gaenge_Art = $('select#gaenge_Art').val();
+var Wuerfel_Gang="";
+for (var i = 0; i < 1 ; i++) {
+Wuerfel_Gang +=selected_gaenge_Art[Math.floor(Math.random()*selected_gaenge_Art.length)];
+}
+////////////////// G&auml;nge //////////////////////////
+////////////////// ToDo ///////////////////////////
+//var todo = document.getElementById('todo');
+//var selected_todo = $('select#todo').val();
+//var Wuerfel_ToDo = '';
+//for (var i = 0; i < 1 ; i++) {
+//Wuerfel_ToDo +=selected_todo[Math.floor(Math.random()*selected_todo.length)];
+//}
+////////////////// ToDo ///////////////////////////
+////////////////// Land ///////////////////////////
+var Laender_vorausw = document.getElementById('Laender_vorausw');
+var selected_Laender_vorausw = $('select#Laender_vorausw').val();
+//	alert('selected_Laender_vorausw --> '+selected_Laender_vorausw);
+var Laender_ausw = document.getElementById('Laender_ausw');
+var selected_Laender_ausw = $('select#Laender_ausw').val();
+//	alert('selected_Laender_ausw --> '+selected_Laender_ausw);
+////////////////// LAND: Jeder bekommt ein Land ///////////////////////////
+if (selected_Laender_vorausw == 'Jeder Teilnehmer bekommt ein Land'){
+	//alert('Jeder Teilnehmer bekommt ein Land--> '+selected_Laender_ausw);
+
+	var Wuerfel_Land="";
+//	alert('Wuerfel_Land 1 --> '+Wuerfel_Land);
+		if (selected_Laender_ausw == 'national / Deutschland'){
+	//	alert('selected_Laender_ausw --> '+selected_Laender_ausw);
+			var Wuerfel_Land = selected_Laender_ausw;
+		//	alert('Wuerfel_Land --> '+Wuerfel_Land);
+			}
+		else {
+		if (selected_Laender_ausw == 'international'){
+		var international = ['Afrika','Asien','Australien','Balkan','Nordamerika','Russland','Skandinavien','S&uuml;damerika'];
+			//alert('international --> '+international);
+			for (var i = 0; i < 1 ; i++) {
+			Wuerfel_Land +=international[Math.floor(Math.random()*international.length)];
+			//alert('Wuerfel_Land 2 --> '+Wuerfel_Land);
+}
+		
+		}
+		else {
+				var europa = ['Deutschland','Skandinavien','Polen','Be-Ne-Lux','Bro&szlig;britanien','&ouml;sterreich/Schweiz','Spanien/Portugal','Italien','Griechenland','Balkan','Frankreich','Tschgechien/Slowakei','Ungarn/Rum&auml;nien'];
+			// alert('europa --> '+europa);
+			for (var i = 0; i < 1 ; i++) {
+			Wuerfel_Land +=europa[Math.floor(Math.random()*europa.length)];
+		}
+		}
+}
+
+
+}
+////////////////// LAND: Alle kochen aus einem Land ///////////////////////////
+else {
+	//alert('EIN Land --> '+selected_Laender_ausw);
+var Laender_ausw = document.getElementById('Laender_ausw');
+	var selected_Laender_ausw = $('select#Laender_ausw').val();
+	if (selected_Laender_ausw == 'national / Deutschland'){
+	var Wuerfel_Land = selected_Laender_ausw;
+	}
+	else {
+	
+if (selected_Laender_ausw == 'international'){
+			var Laender_ausw_int = document.getElementById('Laender_int');
+			var selected_Laender_ausw_int = $('select#Laender_int').val();
+			var Wuerfel_Land = selected_Laender_ausw_int;
+			//alert('selected_Laender_ausw_int --> ' + selected_Laender_ausw_int);
+		}
+		else {
+			var Laender_ausw_europ = document.getElementById('Laender');
+			var selected_Laender_ausw_europ = $('select#Laender').val();
+			var Wuerfel_Land = selected_Laender_ausw_europ;
+			//alert('selected_Laender_ausw_europ --> ' + selected_Laender_ausw_europ);
+		}
+	}
+}
+var Tln_Anz = document.getElementById('Anz');
+//alert('Tln_Anz --> '+Tln_Anz)
+var Tln_selected_Anz = $('select#Anz').val(); 
+//alert('Tln_selected_Anz --> '+Tln_selected_Anz);
+var Tln_anz_schleife = Tln_selected_Anz ++;
+////alert('Tln_anz_schleife --> '+Tln_anz_schleife)
+var Tln_anz_ = Tln_selected_Anz;
+//alert('Tln_anz_ --> '+Tln_anz_)
+for (var i = 1; i < Tln_selected_Anz; i++) {
+	var Tln_a = 'wer'+i;
+	//alert('Tln_a --> ' + Tln_a);
+	var Tln_wer = document.getElementById(Tln_a);
+	//alert('wer --> ' + Tln_wer);
+	var Tln_selected_wer = $('input#'+Tln_a).val();
+	//alert('selected_wer --> ' + Tln_selected_wer);
+	var list = list + '<ul><li>&bull; ' + Tln_selected_wer + '</li></ul>';
+		//alert('list --> ' + list);
+	if (i == 1){
+		var Tln_list = Tln_selected_wer;
+	}
+	else {
+	var Tln_list = Tln_list + "," + Tln_selected_wer;
+		//alert('Tln_list --> ' + Tln_list);
+		}
+}	
+var selected_Tln = Tln_list;
+//var selected_Tln = ['Heinz','Kunibert','Jochen','Freddy'];
+//alert('selected_Tln --> ' +selected_Tln)
+//alert('Tln_list --> ' +Tln_list)
+var Wuerfel_Tln = "";
+		for (var i = 0; i < 1 ; i++) {
+		//alert('FOR selected_Tln --> ' +selected_Tln)
+				//Wuerfel_Tln +=selected_Tln[Math.floor(Math.random()*selected_Tln.length)];
+				Wuerfel_Tln +=selected_Tln[Math.floor(Math.random()*selected_Tln.length)];
+				//alert('FOR Wuerfel_Tln --> ' +Wuerfel_Tln)
+	}
+	
+//['Afrika','Asien','Australien','Balkan','Nordamerika','Russland','Skandinavien','S&uuml;damerika'];
+		
+/////////////// --> TEST <-- ///////////////////////
+var Test_selected_Gang = selected_gaenge_Art;
+var Test_Wuerfel_Gang = "";
+//alert('TEST Test_selected_Gang --> ' + Test_selected_Gang)
+var Test_selected_Tln = selected_Tln;
+var Test_Wuerfel_Tln = ""; 
+//alert('TEST Test_selected_Tln --> ' +Test_selected_Tln)
+var Test_selected_Land = Wuerfel_Land;
+//var Test_selected_Land = ['GER','ENG','HUN','RUS'];
+var Test_Wuerfel_Land = "";
+//alert('Wuerfel_Land --> ' +Wuerfel_Land)
+		for (var i = 0; i < 1 ; i++) {
+				Test_Wuerfel_Tln =selected_Tln[Math.floor(Math.random()*selected_Tln.length)];
+				Test_Wuerfel_Gang =Test_selected_Gang[Math.floor(Math.random()*Test_selected_Gang.length)];
+				Test_Wuerfel_Land =Test_selected_Land[Math.floor(Math.random()*Test_selected_Land.length)];
+	}
+alert('Wuerfel_Gang TEST--> '+Test_Wuerfel_Gang);
+alert('Wuerfel_Tln TEST--> '+Test_Wuerfel_Tln);
+alert('Wuerfel_Land TEST--> '+Test_Wuerfel_Land);
+/////////////// --> TEST <-- ///////////////////////
+//alert('Wuerfel_Tln --> ' + Wuerfel_Tln);
+//alert('Wuerfel_Gang --> ' + Wuerfel_Gang);
+//alert('Wuerfel_Land --> ' + Wuerfel_Land);
+//alert(Wuerfel_Tln+' kocht ein/eine '+Wuerfel_Gang+' aus '+Wuerfel_Land);
+}
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////  ausgew&auml;hlte Felder Anzahl z&auml;hlen /////////////////////////////
+//for (var i = 0; i < length; i++) {
+	//alert('cnt 1 TEST--> '+cnt+' + i = '+i);
+	//alert('Gang[i].selected --> '+Gang[i].selected);
+  //  if (Gang[i].selected === true) {
+    //    cnt++;
+  // }
+//}
+///////////////////  ausgew&auml;hlte Felder Anzahl z&auml;hlen /////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+function test(){
+var Laender_vorausw = document.getElementById('Laender_vorausw');
+var Laender_vorausw_selected = $('select#Laender_vorausw').val();
+var Laender_ausw = document.getElementById('Laender_ausw');
+var Laender_ausw_selected = $('select#Laender_ausw').val();
+//alert('Laender_vorausw_selected --> '+Laender_vorausw_selected);
+//alert('Laender_ausw_selected --> '+Laender_ausw_selected);
+var Tln_a = 'wer';
+var Tln_Anz = document.getElementById('Anz');
+var Tln_selected_Anz = $('select#Anz').val(); 
+var Tln_anz_schleife = Tln_selected_Anz ++;
+var gaenge = document.getElementById('gaenge_Art');
+var gaenge_selected = $('select#gaenge_Art').val();
+var Test_Wuerfel_Gang = "";
+var Test_Wuerfel_Land = "";
+var land = '';
+var nat = 'national / Deutschland';
+var europa = 'europ&auml;isch';
+var internat = 'international';
+var bitte = 'Bitte Land ausw&auml;hlen';
+	for (var i = 1; i <= Tln_anz_schleife; i++) {
+	//alert('hier');
+	var Tln_a = 'wer'+i;
+	var Tln_Name_object = document.getElementById(Tln_a);
+	var Tln_Name = $('input#'+Tln_a).val();
+	//alert('Laender_ausw_selected --> '+Laender_ausw_selected);
+	Test_Wuerfel_Gang =gaenge_selected[Math.floor(Math.random()*gaenge_selected.length)];
+	//Test_Wuerfel_Land =Laender_ausw_selected[Math.floor(Math.random()*Laender_ausw_selected.length)];
+	if (Laender_vorausw_selected == 'Alle kochen aus einem Land'){
+		if (Laender_ausw_selected == nat){
+			var land = nat;
+		}
+		if (Laender_ausw_selected == europa){
+			var Laender = document.getElementById('Laender');
+			var Laender_selected = $('select#Laender').val();
+				if (Laender_selected == bitte){
+					alert('Sie haben noch kein Land gew&auml;hlt');
+				}
+				else{
+				var land = Laender_selected;
+				//var land = europa;
+				}
+		}
+		if (Laender_ausw_selected == internat){
+			var Laender_int = document.getElementById('Laender_int');
+			var Laender_int_selected = $('select#Laender_int').val();
+				if (Laender_int_selected == bitte){
+					alert('Sie haben noch kein Land gew&auml;hlt');
+				}
+				else{
+				var land = Laender_int_selected;
+				//var land = europa;
+				}			
+			var land = Laender_int_selected;
+			//var land = internat;
+		}
+	}
+	else
+	{
+		if (Laender_ausw_selected == nat){
+			var land = nat;
+		}
+		if (Laender_ausw_selected == europa){
+			var Laender_selected = ['Deutschland','Skandinavien','Polen','Be-Ne-Lux','Bro&szlig;britanien','&ouml;sterreich/Schweiz','Spanien/Portugal','Italien','Griechenland','Balkan','Frankreich','Tschgechien/Slowakei','Ungarn/Rum&auml;nien'];
+			Test_Wuerfel_Land =Laender_selected[Math.floor(Math.random()*Laender_selected.length)];
+			var land = Test_Wuerfel_Land;
+		}
+		if (Laender_ausw_selected == internat){
+			//var Laender_int_selected = ['Afrika','Asien','Australien','Balkan','Nordamerika','Russland','Skandinavien','S&uuml;damerika'];
+			var Laender_int_selected = ['Afrika','S&uuml;damerika'];
+			alert('Laender_int_selected 1 --> '+Laender_int_selected);
+			Test_Wuerfel_Land =Laender_int_selected[Math.floor(Math.random()*Laender_int_selected.length)];
+			var land = Test_Wuerfel_Land;
+			var Laender_int_selected = --Test_Wuerfel_Land;
+					}
+	//var land = 'jeder ein ANDERES Land';
+	}
+	var output = 'Folgende Konstellation kommt nun zum tragen, '+Tln_Name+' kocht den oder die '+Test_Wuerfel_Gang+' aus xxx.';	
+		alert(Tln_Name+' - '+Test_Wuerfel_Gang+' - '+land);
+		
+	}
+}
+function FOR(){
+var Laender_vorausw = document.getElementById('Laender_vorausw');
+var Laender_vorausw_selected = $('select#Laender_vorausw').val();
+var Laender_ausw = document.getElementById('Laender_ausw');
+var Laender_ausw_selected = $('select#Laender_ausw').val();
+//alert('Laender_vorausw_selected --> '+Laender_vorausw_selected);
+//alert('Laender_ausw_selected --> '+Laender_ausw_selected);
+var Tln_a = 'wer';
+var Tln_Anz = document.getElementById('Anz');
+var Tln_selected_Anz = $('select#Anz').val(); 
+var Tln_anz_schleife = Tln_selected_Anz ++;
+var gaenge = document.getElementById('gaenge_Art');
+var gaenge_selected = $('select#gaenge_Art').val();
+var Test_Wuerfel_Gang = "";
+var Test_Wuerfel_Land = "";
+var land = '';
+var nat = 'national / Deutschland';
+var europa = 'europ&auml;isch';
+var internat = 'international';
+var bitte = 'Bitte Land ausw&auml;hlen';
+	alert('Tln_anz_schleife --> '+Tln_anz_schleife);
+/////////// FOR TEILNEHMER ///////////////////
+	for (var i = 1; i <= Tln_anz_schleife; i++) {
+	var Tln_a = 'wer'+i;
+	var Tln_Name_object = document.getElementById(Tln_a);
+	var Tln_Name = $('input#'+Tln_a).val();
+	alert('Tln_a --> '+Tln_a);	
+	alert('i --> '+i);
+	alert('Tln_Name --> '+Tln_Name);
+	//Test_Wuerfel_Gang =gaenge_selected[Math.floor(Math.random()*gaenge_selected.length)];
+	//Test_Wuerfel_Land =Laender_ausw_selected[Math.floor(Math.random()*Laender_ausw_selected.length)];
+/////////// FOR LAND ///////////////////
+		for (var i = 1; i <= Tln_anz_schleife; i++) {
+				/////////// FOR MEN&uuml; ///////////////////
+						for (var i = 1; i <= Tln_anz_schleife; i++) {
+				
+				
+		}
+		}
+}
+}
+///////////////////////////////////////////////////////////////////////////////////
+
+	/* <![CDATA[ */	
+/*var hallo = "Kochduell App";
+ alert(hallo);*/
+
+	</script>
+<head>
+	<title>Kochduell by David Patuschka</title> 
+	    <style>
+
+    </style>
+</head>
+<body>
+
+ <main id="accordion">
+ <table border="0" width="100%">
+ <!-- https://www.pexels.com/de-de/suche/essen%20hintergrund/   -->
+<!-- <tr><td align="center" name="Gerichteart">
+	<button aria-expanded="true" aria-controls="collapsible-0" style="width: 50%;>Traditionelles Gericht?</button>
+	<div id="collapsible-0" aria-hidden="false" align="center">
+		<p>Hier koennte die Abfrage fuer "Traditionelle Gerichte" oder "meherer Gerichte" stattfinden</p>
+		  <label>Art der Gerichte:
+    <select id="Art" name="Art">
+      <option>Traditionelle Gerichte</option>
+      <option>meherer Gerichte</option>
+    </select> </label></div>
+</td></tr>--><tr><td align="center" name="Wer">
+	<button aria-expanded="true" aria-controls="collapsible-1" style=" width: 50%;">Wer kocht mit?</button>
+	<div id="collapsible-1" aria-hidden="false">
+		  <label for="groesse">
+    Anzahl Personen (mindestens 2 Personen):<br>
+	    <select id="Anz" name="Anz">
+      <option> 02 </option>
+	  <option> 03 </option>
+      <option> 04 </option>
+      <option> 05 </option>
+      <option> 06 </option>
+      <option> 07 </option>
+	  <option> 08 </option>
+      <option> 09 </option>
+      <option> 10 </option>
+      <option> 11 </option>
+      <option> 12 </option>				
+    </select>  <br>
+	<div>
+		<p>Wer kocht mit: </p>
+		<table style=" width: 50%;" border="0" align="center"><tr>
+		<td style=" width: 25%;"><label style="float:right;"> 1.Person</label></td>
+		<td style=" width: 25%;"><input name="wer1" id="wer1" maxlength="30" type="visible" value="David" style="float:left;"></td>
+		<td style=" width: 25%;"><label style="float:right;"> 2.Person</label></td>
+		<td style=" width: 25%;"><input name="wer2" id="wer2" maxlength="30" type="visible" value="Sarah" style="float:left;"></td>
+		</tr><tr>
+		<td style=" width: 25%;"><label style="float:right;"> 3.Person</label></td>
+		<td style=" width: 25%;"><input name="wer1" id="wer3" maxlength="30" type="visible" style="float:left;"></td>
+		<td style=" width: 25%;"><label style="float:right;"> 4.Person</label></td>
+		<td style=" width: 25%;"><input name="wer2" id="wer4" maxlength="30" type="visible" style="float:left;"></td>
+		</tr><tr>
+		<td style=" width: 25%;"><label style="float:right;"> 5.Person</label></td>
+		<td style=" width: 25%;"><input name="wer1" id="wer5" maxlength="30" type="visible" style="float:left;"></td>
+		<td style=" width: 25%;"><label style="float:right;"> 6.Person</label></td>
+		<td style=" width: 25%;"><input name="wer2" id="wer6" maxlength="30" type="visible" style="float:left;"></td>
+		</tr><tr>
+		<td style=" width: 25%;"><label style="float:right;"> 7.Person</label></td>
+		<td style=" width: 25%;"><input name="wer1" id="wer7" maxlength="30" type="visible" style="float:left;"></td>
+		<td style=" width: 25%;"><label style="float:right;"> 8.Person</label></td>
+		<td style=" width: 25%;"><input name="wer2" id="wer8" maxlength="30" type="visible" style="float:left;"></td>
+		</tr><tr>
+		<td style=" width: 25%;"><label style="float:right;"> 9.Person</label></td>
+		<td style=" width: 25%;"><input name="wer1" id="wer9" maxlength="30" type="visible" style="float:left;"></td>
+		<td style=" width: 25%;"><label style="float:right;"> 10.Person</label></td>
+		<td style=" width: 25%;"><input name="wer2" id="wer10" maxlength="30" type="visible" style="float:left;"></td>
+		</tr><tr>
+		<td style=" width: 25%;"><label style="float:right;"> 11.Person</label></td>
+		<td style=" width: 25%;"><input name="wer1" id="wer11" maxlength="30" type="visible" style="float:left;"></td>
+		<td style=" width: 25%;"><label style="float:right;"> 12.Person</label></td>
+		<td style=" width: 25%;"><input name="wer2" id="wer12" maxlength="30" type="visible" style="float:left;"></td>
+		</tr>
+<!--<label> 1.Person</label>		<input name="wer1" id="wer1" maxlength="30" type="visible" value="David">
+<label> 2.Person</label>		<input name="wer2" id="wer2" maxlength="30" type="visible" value="Sarah"><br>
+<label> 3.Person</label>		<input name="wer3" id="wer3" maxlength="30" type="visible">
+<label> 4.Person</label>		<input name="wer4" id="wer4" maxlength="30" type="visible"><br>
+<label> 5.Person</label> 		<input name="wer5" id="wer5" maxlength="30" type="visible">
+<label> 6.Person</label>		<input name="wer6" id="wer6" maxlength="30" type="visible"><br>
+<label> 7.Person</label> 		<input name="wer7" id="wer7" maxlength="30" type="visible">
+<label> 8.Person</label>		<input name="wer8" id="wer8" maxlength="30" type="visible"><br>
+<label> 9.Person</label>  		<input name="wer9" id="wer9" maxlength="30" type="visible">
+<label> 10.Person</label>		<input name="wer10" id="wer10" maxlength="30" type="visible"><br>
+<label> 11.Person</label>  		<input name="wer11" id="wer11" maxlength="30" type="visible">
+<label> 12.Person</label>		<input name="wer12" id="wer12" maxlength="30" type="visible"><br>-->
+		</table></div>
+   </label>
+	</div>
+</td></tr><tr><td align="center" name="Gerichteauswahl">
+	<button aria-expanded="true" aria-controls="collapsible-2" style=" width: 50%;">Welche Gerichte sollen es sein?</button>
+	<div id="collapsible-2" aria-hidden="false">
+			<p>Welche G&auml;nge sollen es werden?</p>
+		    <select id="gaenge_Art" name="gaenge_Art" multiple>
+      			<option value="Vorspeise" selected> Vorspeise </option>
+	  			<option value="Zwischengang" selected> Zwischengang </option>	
+	  			<option value="Hauptgang"> Hauptgang  </option>
+	  			<option value="Nachspeise"> Nachspeise  </option>			
+    		</select>
+		<p style="visibility: hidden">Wie viele G&auml;nge d&uuml;rfen es sein?</p>
+		    <select id="gaenge_Anz" name="gaenge_Anz" style="visibility: hidden">
+     		  <option> 1 </option>
+			  <option> 2 </option>	
+	  		  <option> 3 </option>
+			  <option> 4 </option>			
+  			</select>
+	</div>
+</td></tr><tr><td align="center" name="todo">
+	<button aria-expanded="true" aria-controls="collapsible-3" style=" width: 50%;">Was muss alles getan werden?</button>
+	<div id="collapsible-3" aria-hidden="false">
+		<p>Was soll alles gekocht werden?</p>
+			    <select id="todo" name="todo" multiple>
+      			<option selected> Essen </option>
+	  			<option> Getr&auml;nk </option>	
+	  			<option> Begr&uuml;&szlig;ung  </option>
+	  			<option> Kleidung  </option>			
+    		</select>
+	</div>
+</td></tr><tr><td align="center" name="Land">
+	<button aria-expanded="true" aria-controls="collapsible-4" style=" width: 50%;">Länderauswahl</button>
+	<div id="collapsible-4" aria-hidden="false">
+		<p>Soll alles aus einem Land gekocht werden oder soll jeder ein eigenes Land zugelost bekommen? Dies k&ouml;nnen Sie hier festlegen.</p>
+	    	<select id="Laender_vorausw" name="Laender_vorausw" onchange="Laendervorauswahl();">
+      			<option>Alle kochen aus einem Land</option>
+      			<option>Jeder Teilnehmer bekommt ein Land</option>
+    		</select><br><br>
+	    	<select id="Laender_ausw" name="Laender_ausw" onchange="Laenderauswahl();">
+      			<option id="natGER">national / Deutschland</option>
+      			<option>europ&auml;isch</option>
+	        	<option>international</option>
+    		</select><br><br>
+	    	<select id="Laender" name="Laender" style="visibility: hidden">
+      		<!--	<option id="Laender_europa_waehlen" selected disabled>Bitte Land ausw&auml;hlen</option> -->
+      			<option id="Land_europa_0">Deutschland</option>
+	        	<option id="Land_europa_1">Skandinavien</option>
+				<option id="Land_europa_2">Polen</option>
+	        	<option id="Land_europa_3">Be-Ne-Lux</option>
+	        	<option id="Land_europa_4">Bro&szlig;britanien</option>
+				<option id="Land_europa_5">&Ouml;sterreich/Schweiz</option>
+	        	<option id="Land_europa_6">Spanien/Portugal</option>
+	        	<option id="Land_europa_7">Italien</option>
+				<option id="Land_europa_8">Griechenland</option>
+	        	<option id="Land_europa_10">Balkan</option>
+				<option id="Land_europa_11">Frankreich</option>
+				<option id="Land_europa_12">Tschechien/Slowakei</option>
+				<option id="Land_europa_13">Ungarn/Rum&auml;nien</option>
+    		</select>
+			<select id="Laender_int" name="Laender_int" style="visibility: hidden">
+      		<!--	<option id="Laender_int_waehlen" selected disabled>Bitte Land ausw&auml;hlen</option>-->
+	        	<option id="Land_int_0">Afrika</option>				
+      			<option id="Land_int_1">Asien</option>
+				<option id="Land_int_2">Australien</option>			
+				<option id="Land_int_3">Nordamerika</option>
+				<option id="Land_int_4">Russland</option>
+				<option id="Land_int_5">Skandinavien</option>
+	        	<option id="Land_int_6">S&uuml;damerika</option>
+    		</select>
+	</div>
+</td></tr><tr><td align="center" name="Ort">
+<button aria-expanded="true" aria-controls="collapsible-5" style=" width: 50%;">Wo soll das Kochduell stattfinden?</button>
+	<div id="collapsible-5" aria-hidden="false">
+		<p>In welchem Hause soll das Kochduell stattfinden?</p>
+ 				<label for="Standort">Standort: </label> 
+  				<input name="Standort" id="Standort" maxlength="30">
+	</div>
+</td></tr><tr><td align="center" name="Wann">
+		<button aria-expanded="true" aria-controls="collapsible-6" style=" width: 50%;">Wann soll es stattfinden?</button>
+	<div id="collapsible-6" aria-hidden="false">
+		<p>Wann soll das Kochduell stattfinden?</p>
+			<table style=" width: 50%;" border="0" align="center">
+				<tr>
+					<td style=" width: 25%;"><label for="datum">Datum: </label></td>
+					<td style=" width: 25%;"><input type="date" id="datum"></td>
+					<td style=" width: 25%;"><label for="uhrzeit">Uhrzeit: </label></td>
+					<td style=" width: 25%;"><input type="time" id="uhrzeit"></td>
+				</tr></table>
+		</label>
+	</div>
+</td></tr>
+</table>
+
+
+<!--	<button aria-expanded="true" aria-controls="collapsible-7">Soll es eine Ueberraschung sein?</button>
+	<div id="collapsible-7" aria-hidden="false">
+		<p>Hier koennte die Abfrage fuer "Uebersicht oder Ueberraschung" stattfinden.</p>
+		    <select id="ueber" name="ueber">
+     		  <option> Ja </option>
+			  <option> Nein </option>			
+  			</select>
+	</div> -->
+ </main> 
+</br>
+  <!--  <button onclick="test()">Test</button><br>-->
+<!--	<button type="submit" onclick="mail()">Best&auml;tigen und Mail versenden</button><br><br>-->
+<!--	<button onclick="mail()">Best&auml;tigen und Mail versenden</button><br>-->
+	<label> E-Mail Adresse </label>
+		<input name="mailadresse" value="davidpatuschka@gmail.com" id="mailadresse" type="visible">
+			<br><a> E-Mail Adresse muss gef&uuml;llt werden, um das Ergebnis zu versenden. </a>
+			<br><a> !Mehrfachauswahl bitte mit Semikolon (;) trennen </a></input><br><br>
+			<br><br><br><a> JETZT DAS GANZE (ZUFALLSAUSWAHL) IN EINE E-MAIL PACKEN!!! </a><br><br><br><br>
+	<button onclick="zus()">zusammenfassen !</button>						
+<!--	<button onclick="wuerfeln()">Wuerfel</button>							-->
+	<button onclick="ok()">Zufallsauswahl</button>
+<!--	<button onclick="testemailsafe()">Test Mail E-Mail speichern</button>	-->
+<!--	<button onclick="testmail()">Test Mail senden</button>					-->
+<!--	<button onclick="selected()">selected</button>							-->
+<!--	<button onclick="FOR()">FOR</button>									-->
+	<br><br><br><br>
+	<div id="mail" style="display: none;">
+		<label> E-Mail Adresse </label>
+		<input name="mailadresse" id="mailadresse" type="visible">
+		<a>Bitte mit Semikolon (;) trennen </a><br><br>
+	<form id="adress" action="mailto:email"><button onclick="send()">senden ! GO</button></form>
+	<button onclick="send()">senden !</button>
+	</div>
+	<div id="mail2" style="display: none;">
+		<form action="mailto:info@w3docs.com" method="get" enctype="text/plain">
+      		<p>E-Mail: <input type="text" name="email"/></p>
+      		<p>Kommentare:
+        		<br />
+       			<textarea name="comments" rows = "12" cols = "35">Senden Sie Ihre Kommentare.</textarea>
+        		<br>
+     		 <p><input type="submit" name="submit" value="Absenden" />
+        		<input type="reset" name="reset" value="L&ouml;schen" />
+      </p>
+
+    </form>
+	</div>
+	<div style="position:bottom;">
+	<table><tr><td><a href="App_imp.html">Impressum</a></td><td><a href="App_faq.html">FAQ</a></td><td><a href="App_kon.html">Kontakt</a></td></tr></table></div>
+</body>
+
+</html>
