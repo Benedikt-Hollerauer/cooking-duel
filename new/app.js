@@ -85,3 +85,21 @@ numFieldsInput.addEventListener('input', () => {
     dynamicFieldsDiv.appendChild(input);
   }
 });
+
+function getCountries() {
+    europa = [
+        "Deutschland",
+        "Skandinavien",
+        "Polen",
+        "Be-Ne-Lux",
+        "Großbritannien",
+        "Österreich/Schweiz",
+        "Spanien/Portugal",
+        "Italien",
+        "Griechenland",
+        "Balkan",
+        "Frankreich",
+        "Tschechien/Slowakei",
+        "Ungarn/Rumänien"
+    ]
+}

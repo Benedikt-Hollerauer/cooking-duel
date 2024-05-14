@@ -26,24 +26,30 @@
         </div>
         <div class="tab">
             <b>Was muss alles getan werden?</b>
-            <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-            <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-            <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+            <select id="dropdown-input" name="dropdown-input">
+                <option value="starter">Essen</option>
+                <option value="intermediate-course">Getränk</option>
+                <option value="main-course">Begrüßund</option>
+                <option value="dessert">Kleidung</option>
+            </select>
         </div>
         <div class="tab">
             <b>Länderauswahl</b>
-            <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-            <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+            <select id="country-selection" name="country-selection">
+                <option>Deutsch</option>
+                <option>Europäisch</option>
+                <option>International</option>
+          </select>
         </div>
         <div class="tab">
             <b>Wo soll das Kochduell stattfinden?</b>
-            <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-            <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+            <label for="location">Standort: </label> 
+            <input name="location" maxlength="30">
         </div>
         <div class="tab">
             <b>Wann soll es stattfinden?</b>
-            <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-            <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+            <label for="datetime">Enter a date and time:</label>
+            <input type="datetime-local" id="datetime" name="datetime">
         </div>
         <div style="overflow:auto;">
             <div style="float:right;">
@@ -53,7 +59,6 @@
         </div>
         <!-- Circles which indicates the steps of the form: -->
         <div style="text-align:center;margin-top:40px;">
-            <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
