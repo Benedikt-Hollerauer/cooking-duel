@@ -86,8 +86,8 @@ numFieldsInput.addEventListener('input', () => {
   }
 });
 
-function getCountries() {
-    europa = [
+function getCountriesFromName(region) {
+    let europa = [
         "Deutschland",
         "Skandinavien",
         "Polen",
@@ -102,4 +102,21 @@ function getCountries() {
         "Tschechien/Slowakei",
         "Ungarn/Rumänien"
     ]
+    let international = [
+        "Afrika",
+        "Asien",
+        "Australien",
+        "Nordamerika",
+        "Russland",
+        "Skandinavien",
+        "Südamerika"
+    ]
+    switch(region) {
+        case "europa":
+            return europa
+        case "international":
+            return international
+        default:
+            return europa
+    }
 }
