@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form id="regForm" action="/action_page.php">
+    <form id="regForm">
         <h1>Kochduell</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
@@ -35,11 +35,12 @@
         </div>
         <div class="tab">
             <b>Länderauswahl</b>
-            <select id="country-selection" name="country-selection">
-                <option>Deutsch</option>
-                <option>Europäisch</option>
-                <option>International</option>
-          </select>
+            <select id="country-selection" name="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
+                <option value="german" selected>Deutsch</option>
+                <option value="europa">Europäisch</option>
+                <option value="International">International</option>
+              </select>
+            <div id="further-country-selection"></div>
         </div>
         <div class="tab">
             <b>Wo soll das Kochduell stattfinden?</b>

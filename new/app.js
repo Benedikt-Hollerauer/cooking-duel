@@ -87,6 +87,13 @@ numFieldsInput.addEventListener('input', () => {
 });
 
 function getCountriesFromName(region) {
+    let german = [
+        "Bayern",
+        "Baden Württemberg",
+        "Sachsen",
+        "Niedersachsen",
+        "Thüringen"
+    ]
     let europa = [
         "Deutschland",
         "Skandinavien",
@@ -112,6 +119,8 @@ function getCountriesFromName(region) {
         "Südamerika"
     ]
     switch(region) {
+        case "german":
+            return german
         case "europa":
             return europa
         case "international":
@@ -120,3 +129,26 @@ function getCountriesFromName(region) {
             return europa
     }
 }
+
+function secondSelectFill(first, second) {
+    const firstSelect = document.getElementById(first);
+    const secondSelectContainer = document.getElementById(second);
+    const selectedValue = firstSelect.value;
+
+    // Clear the second select container
+    secondSelectContainer.innerHTML = '';
+
+    if (selectedValue) {
+      const secondSelectElement = document.createElement('select');
+      const countries = getCountriesFromName(selectedValue);
+
+      countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.text = country;
+        secondSelectElement.add(option);
+      });
+
+      secondSelectContainer.appendChild(secondSelectElement);
+    }
+  }
