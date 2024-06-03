@@ -32,7 +32,7 @@ function nextPrev(n) {
     // if you have reached the end of the form...
     if (currentTab >= x.length) {
         // ... the form gets submitted:
-        document.getElementById("regForm").submit();
+        consoleLogFormData()//document.getElementById("regForm").submit();
         return false;
     }
     // Otherwise, display the correct tab:
@@ -152,3 +152,25 @@ function secondSelectFill(first, second) {
       secondSelectContainer.appendChild(secondSelectElement);
     }
   }
+
+function consoleLogFormData(event) {
+    const form = document.getElementById('regForm');
+    const formData = new FormData(form);
+    console.log(formData.values().next());
+}
+
+//  function getFormData(formId) {
+//    const form = document.getElementById(formId);
+//    const formData = new FormData(form);
+//  
+//    // Convert FormData to a plain object
+//    const data = {};
+//    for (const [key, value] of formData.entries()) {
+//      data[key] = value;
+//    }
+//  
+//    return data;
+//  }
+//
+//  const formData = getFormData('regForm');
+//console.log(formData);
