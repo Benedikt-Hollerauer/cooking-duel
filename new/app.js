@@ -153,10 +153,12 @@ function secondSelectFill(first, second) {
     }
   }
 
-function consoleLogFormData(event) {
+function consoleLogFormData() {
     const form = document.getElementById('regForm');
     const formData = new FormData(form);
-    console.log(formData.values().next());
+    const formDataMap = new Map(formData.entries());
+
+    console.log(Object.fromEntries(formDataMap));
 }
 
 //  function getFormData(formId) {

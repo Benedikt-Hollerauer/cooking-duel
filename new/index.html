@@ -7,17 +7,17 @@
 </head>
 
 <body>
-    <form id="regForm">
+    <form id="regForm" onsubmit="consoleLogFormData()">
         <h1>Kochduell</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
             <label for="num-fields"><b>Wer kocht mit?</b></label>
-            <input type="range" id="num-fields" min="2" max="12" value="2">
+            <input name="who-cookes" type="range" id="num-fields" min="2" max="12" value="2">
             <div id="dynamic-fields"></div>
         </div>
         <div class="tab">
             <b>Welche Gerichte sollen es sein?</b>
-            <select id="dropdown-input" name="dropdown-input">
+            <select name="which" id="dropdown-input" name="dropdown-input">
                 <option value="starter">Vorspeise</option>
                 <option value="intermediate-course">Zwischengang</option>
                 <option value="main-course">Hauptgang</option>
@@ -26,7 +26,7 @@
         </div>
         <div class="tab">
             <b>Was muss alles getan werden?</b>
-            <select id="dropdown-input" name="dropdown-input">
+            <select name="" id="dropdown-input" name="dropdown-input">
                 <option value="starter">Essen</option>
                 <option value="intermediate-course">Getränk</option>
                 <option value="main-course">Begrüßund</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="tab">
             <b>Länderauswahl</b>
-            <select id="country-selection" name="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
+            <select name="country-selection" id="country-selection" name="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
                 <option value="german" selected>Deutsch</option>
                 <option value="europa">Europäisch</option>
                 <option value="International">International</option>
@@ -50,7 +50,7 @@
         <div class="tab">
             <b>Wann soll es stattfinden?</b>
             <label for="datetime">Enter a date and time:</label>
-            <input type="datetime-local" id="datetime" name="datetime">
+            <input type="datetime-local" id="datetime" name="when">
         </div>
         <div style="overflow:auto;">
             <div style="float:right;">
