@@ -130,49 +130,42 @@ function getCountriesFromName(region) {
     }
 }
 
-function secondSelectFill(first, second) {
-    const firstSelect = document.getElementById(first);
-    const secondSelectContainer = document.getElementById(second);
+function secondSelectFill(firstSelectId, secondSelectId) {
+    const firstSelect = document.getElementById(firstSelectId);
+    const secondSelect = document.getElementById(secondSelectId);
+  
+    // Clear second select options
+    secondSelect.innerHTML = '';
+  
     const selectedValue = firstSelect.value;
-
-    // Clear the second select container
-    secondSelectContainer.innerHTML = '';
-
     if (selectedValue) {
-      const secondSelectElement = document.createElement('select');
       const countries = getCountriesFromName(selectedValue);
-
       countries.forEach(country => {
         const option = document.createElement('option');
         option.value = country;
         option.text = country;
-        secondSelectElement.add(option);
+        secondSelect.add(option);
       });
-
-      secondSelectContainer.appendChild(secondSelectElement);
+  
+      // Show second select
+      secondSelect.style.display = 'block';
+    } else {
+      // Hide second select
+      secondSelect.style.display = 'none';
     }
   }
 
-function consoleLogFormData() {
+  function consoleLogFormData() {
     const form = document.getElementById('regForm');
     const formData = new FormData(form);
     const formDataMap = new Map(formData.entries());
+    const formDataObj = Object.fromEntries(formDataMap);
 
-    console.log(Object.fromEntries(formDataMap));
+    // Get the dynamic input fields
+    const dynamicFields = Array.from(document.querySelectorAll('#dynamic-fields input')).map(input => input.value);
+
+    // Store the dynamic fields in a list
+    formDataObj['dynamicFields'] = dynamicFields;
+
+    console.log(formDataObj);
 }
-
-//  function getFormData(formId) {
-//    const form = document.getElementById(formId);
-//    const formData = new FormData(form);
-//  
-//    // Convert FormData to a plain object
-//    const data = {};
-//    for (const [key, value] of formData.entries()) {
-//      data[key] = value;
-//    }
-//  
-//    return data;
-//  }
-//
-//  const formData = getFormData('regForm');
-//console.log(formData);
