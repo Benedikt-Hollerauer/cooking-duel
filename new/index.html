@@ -12,8 +12,8 @@
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
             <label for="num-fields"><b>Wer kocht mit?</b></label>
-            <input name="who-cookes" type="range" id="num-fields" min="2" max="12" value="2">
-            <div id="dynamic-fields"></div>
+            <input type="range" id="num-fields" min="2" max="12" value="2">
+            <div id="members"></div>
         </div>
         <div class="tab">
             <b>Welche Gerichte sollen es sein?</b>
@@ -68,6 +68,7 @@
             <span class="step"></span>
         </div>
     </form>
+    <div id="summary"></div>
     <script src="app.js"></script>
 </body>
 

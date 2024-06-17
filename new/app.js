@@ -72,7 +72,7 @@ function fixStepIndicator(n) {
 }
 
 const numFieldsInput = document.getElementById('num-fields');
-const dynamicFieldsDiv = document.getElementById('dynamic-fields');
+const dynamicFieldsDiv = document.getElementById('members');
 
 numFieldsInput.addEventListener('input', () => {
   const numFields = numFieldsInput.value;
@@ -160,12 +160,63 @@ function secondSelectFill(firstSelectId, secondSelectId) {
     const formData = new FormData(form);
     const formDataMap = new Map(formData.entries());
     const formDataObj = Object.fromEntries(formDataMap);
-
+  
     // Get the dynamic input fields
-    const dynamicFields = Array.from(document.querySelectorAll('#dynamic-fields input')).map(input => input.value);
-
+    const dynamicFields = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
+  
     // Store the dynamic fields in a list
-    formDataObj['dynamicFields'] = dynamicFields;
-
+    formDataObj['members'] = dynamicFields;
+  
+    const formDataDiv = document.createElement('div');
+  
+    // Create the table
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
+  
+    // Create the table header row
+    const headerRow = document.createElement('tr');
+    const headerCell = document.createElement('th');
+    headerCell.textContent = 'Schlüssel';
+    headerRow.appendChild(headerCell);
+    const valueHeaderCell = document.createElement('th');
+    valueHeaderCell.textContent = 'Wert';
+    headerRow.appendChild(valueHeaderCell);
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+  
+    // Create the table body rows
+    for (const [key, value] of Object.entries(formDataObj)) {
+      const row = document.createElement('tr');
+      const keyCell = document.createElement('td');
+      keyCell.textContent = getGermanKey(key);
+      row.appendChild(keyCell);
+      const valueCell = document.createElement('td');
+      valueCell.textContent = Array.isArray(value) ? value.join(', ') : value;
+      row.appendChild(valueCell);
+      tbody.appendChild(row);
+    }
+    table.appendChild(tbody);
+  
+    // Add the table to the formDataDiv
+    formDataDiv.appendChild(table);
+  
+    // Update the summary div with the formDataDiv
+    const summaryDiv = document.getElementById('summary');
+    summaryDiv.innerHTML = '';
+    summaryDiv.appendChild(formDataDiv);
+  
     console.log(formDataObj);
-}
+  }
+  
+  // Helper function to get the German translation of the key
+  function getGermanKey(key) {
+    const germanKeys = {
+      'which': 'Welche Gerichte sollen es sein?',
+      'location': 'Standort',
+      'when': 'Wann soll es stattfinden?',
+      'members': 'Wer kocht mit?'
+    };
+  
+    return germanKeys[key] || key;
+  }
