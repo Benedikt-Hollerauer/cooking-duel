@@ -4,9 +4,23 @@
 
 body {
     background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 #regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+
+#summary {
+    display: none;
     background-color: #ffffff;
     margin: 100px auto;
     font-family: Raleway;

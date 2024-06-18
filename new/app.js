@@ -32,7 +32,7 @@ function nextPrev(n) {
     // if you have reached the end of the form...
     if (currentTab >= x.length) {
         // ... the form gets submitted:
-        consoleLogFormData()//document.getElementById("regForm").submit();
+        createSummary()//document.getElementById("regForm").submit();
         return false;
     }
     // Otherwise, display the correct tab:
@@ -88,12 +88,23 @@ numFieldsInput.addEventListener('input', () => {
 
 function getCountriesFromName(region) {
     let german = [
+        "Baden-Württemberg",
         "Bayern",
-        "Baden Württemberg",
-        "Sachsen",
+        "Berlin",
+        "Brandenburg",
+        "Bremen",
+        "Hamburg",
+        "Hessen",
+        "Mecklenburg-Vorpommern",
         "Niedersachsen",
+        "Nordrhein-Westfalen",
+        "Rheinland-Pfalz",
+        "Saarland",
+        "Sachsen",
+        "Sachsen-Anhalt",
+        "Schleswig-Holstein",
         "Thüringen"
-    ]
+    ];
     let europa = [
         "Deutschland",
         "Skandinavien",
@@ -119,11 +130,11 @@ function getCountriesFromName(region) {
         "Südamerika"
     ]
     switch(region) {
-        case "german":
+        case "Deutsch":
             return german
-        case "europa":
+        case "Europäisch":
             return europa
-        case "international":
+        case "International":
             return international
         default:
             return europa
@@ -155,7 +166,7 @@ function secondSelectFill(firstSelectId, secondSelectId) {
     }
   }
 
-  function consoleLogFormData() {
+  function createSummary() {
     const form = document.getElementById('regForm');
     const formData = new FormData(form);
     const formDataMap = new Map(formData.entries());
@@ -203,19 +214,21 @@ function secondSelectFill(firstSelectId, secondSelectId) {
   
     // Update the summary div with the formDataDiv
     const summaryDiv = document.getElementById('summary');
+    form.style.display = "none"
+    summaryDiv.style.display = "block"
     summaryDiv.innerHTML = '';
     summaryDiv.appendChild(formDataDiv);
-  
-    console.log(formDataObj);
   }
   
   // Helper function to get the German translation of the key
   function getGermanKey(key) {
     const germanKeys = {
-      'which': 'Welche Gerichte sollen es sein?',
-      'location': 'Standort',
-      'when': 'Wann soll es stattfinden?',
-      'members': 'Wer kocht mit?'
+        'what-has-to-be-done': 'Was muss getan werden?',
+        'which': 'Welche Gerichte sollen es sein?',
+        'country-selection': 'Länderauswahl',
+        'location': 'Standort',
+        'when': 'Wann soll es stattfinden?',
+        'members': 'Wer kocht mit?'
     };
   
     return germanKeys[key] || key;

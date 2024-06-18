@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form id="regForm" onsubmit="consoleLogFormData()">
+    <form id="regForm" onsubmit="createSummary()">
         <h1>Kochduell</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
@@ -18,27 +18,27 @@
         <div class="tab">
             <b>Welche Gerichte sollen es sein?</b>
             <select name="which" id="dropdown-input" name="dropdown-input">
-                <option value="starter">Vorspeise</option>
-                <option value="intermediate-course">Zwischengang</option>
-                <option value="main-course">Hauptgang</option>
-                <option value="dessert">Nachspeise</option>
+                <option>Vorspeise</option>
+                <option>Zwischengang</option>
+                <option>Hauptgang</option>
+                <option>Nachspeise</option>
             </select>
         </div>
         <div class="tab">
             <b>Was muss alles getan werden?</b>
-            <select name="" id="dropdown-input" name="dropdown-input">
-                <option value="starter">Essen</option>
-                <option value="intermediate-course">Getränk</option>
-                <option value="main-course">Begrüßund</option>
-                <option value="dessert">Kleidung</option>
+            <select name="what-has-to-be-done" id="dropdown-input" name="dropdown-input">
+                <option>Essen</option>
+                <option>Getränk</option>
+                <option>Begrüßund</option>
+                <option>Kleidung</option>
             </select>
         </div>
         <div class="tab">
             <b>Länderauswahl</b>
             <select  id="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
-                <option value="german">Deutsch</option>
-                <option value="europa">Europäisch</option>
-                <option value="International">International</option>
+                <option>Deutsch</option>
+                <option>Europäisch</option>
+                <option>International</option>
               </select>
               <select name="country-selection" id="further-country-selection" style="display: none;"></select>
         </div>
