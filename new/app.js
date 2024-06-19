@@ -1,11 +1,11 @@
 let currentTab = 0; // Current tab is set to be the first tab (0)
+const state = {
+    summary: {}
+};
 
 showTab(currentTab); // Display the current tab
 
-/**
- * Function to display the specified tab of the form
- * @param {number} n - The index of the tab to be displayed
- */
+// Function to display the specified tab of the form
 function showTab(n) {
     const tabs = document.getElementsByClassName("tab");
     tabs[n].style.display = "block";
@@ -27,10 +27,7 @@ function showTab(n) {
     fixStepIndicator(n);
 }
 
-/**
- * Function to navigate between tabs
- * @param {number} n - The step value (1 for next, -1 for previous)
- */
+// Function to navigate between tabs
 function nextPrev(n) {
     const tabs = document.getElementsByClassName("tab");
 
@@ -53,10 +50,7 @@ function nextPrev(n) {
     showTab(currentTab);
 }
 
-/**
- * Function to validate the form fields in the current tab
- * @returns {boolean} - True if all fields are valid, false otherwise
- */
+// Function to validate the form fields in the current tab
 function validateForm() {
     const tabs = document.getElementsByClassName("tab");
     const inputs = tabs[currentTab].getElementsByTagName("input");
@@ -79,10 +73,7 @@ function validateForm() {
     return valid;
 }
 
-/**
- * Function to update the step indicator
- * @param {number} n - The index of the current tab
- */
+// Function to update the step indicator
 function fixStepIndicator(n) {
     const steps = document.getElementsByClassName("step");
 
@@ -111,11 +102,7 @@ numFieldsInput.addEventListener('input', () => {
     }
 });
 
-/**
- * Function to get an array of countries based on the selected region
- * @param {string} region - The selected region
- * @returns {string[]} - An array of countries
- */
+// Function to get an array of countries based on the selected region
 function getCountriesFromName(region) {
     const german = [
         "Baden-Württemberg",
@@ -174,11 +161,7 @@ function getCountriesFromName(region) {
     }
 }
 
-/**
- * Function to populate the second select dropdown based on the first select value
- * @param {string} firstSelectId - The ID of the first select element
- * @param {string} secondSelectId - The ID of the second select element
- */
+// Function to populate the second select dropdown based on the first select value
 function secondSelectFill(firstSelectId, secondSelectId) {
     const firstSelect = document.getElementById(firstSelectId);
     const secondSelect = document.getElementById(secondSelectId);
@@ -204,9 +187,7 @@ function secondSelectFill(firstSelectId, secondSelectId) {
     }
 }
 
-/**
- * Function to create a summary table from the form data
- */
+// Function to create a summary and store it in the state object
 function createSummary() {
     const form = document.getElementById('regForm');
     const formData = new FormData(form);
@@ -219,7 +200,21 @@ function createSummary() {
     // Store the dynamic fields in a list
     formDataObj['members'] = dynamicFields;
 
-    const formDataDiv = document.createElement('div');
+    // Store the summary data in the state object
+    state.summary = formDataObj;
+
+    // Update the UI with the summary
+    renderSummary();
+}
+
+// Function to render the summary in the UI
+function renderSummary() {
+    const summaryDiv = document.getElementById('summary');
+    const summaryWrapperDiv = document.getElementById("summary-wrapper");
+    const form = document.getElementById('regForm');
+
+    // Clear the summary div
+    summaryDiv.innerHTML = '';
 
     // Create the table
     const table = document.createElement('table');
@@ -238,7 +233,7 @@ function createSummary() {
     table.appendChild(thead);
 
     // Create the table body rows
-    for (const [key, value] of Object.entries(formDataObj)) {
+    for (const [key, value] of Object.entries(state.summary)) {
         const row = document.createElement('tr');
         const keyCell = document.createElement('td');
         keyCell.textContent = getGermanKey(key);
@@ -251,23 +246,15 @@ function createSummary() {
 
     table.appendChild(tbody);
 
-    // Add the table to the formDataDiv
-    formDataDiv.appendChild(table);
+    // Add the table to the summaryDiv
+    summaryDiv.appendChild(table);
 
-    // Update the summary div with the formDataDiv
-    const summaryDiv = document.getElementById('summary');
-    const summaryWrapperDiv = document.getElementById("summary-wrapper");
+    // Update the UI
     form.style.display = "none";
     summaryWrapperDiv.style.display = "flex";
-    summaryDiv.innerHTML = '';
-    summaryDiv.appendChild(formDataDiv);
 }
 
-/**
- * Helper function to get the German translation of the key
- * @param {string} key - The key to be translated
- * @returns {string} - The German translation of the key
- */
+// Helper function to get the German translation of the key
 function getGermanKey(key) {
     const germanKeys = {
         'what-has-to-be-done': 'Was muss getan werden?',
@@ -281,22 +268,16 @@ function getGermanKey(key) {
     return germanKeys[key] || key;
 }
 
-/**
- * Function to open an email client with the summary table as the email body
- */
+// Function to open an email client with the summary data
 function openEmailWithSummary() {
-    const summaryTable = document.querySelector('#summary table');
-    const tableRows = summaryTable.querySelectorAll('tbody tr');
     let emailBody = '';
 
-    tableRows.forEach(row => {
-        const key = row.querySelector('td:first-child').textContent;
-        const value = row.querySelector('td:last-child').textContent;
+    for (const [key, value] of Object.entries(state.summary)) {
         emailBody += `
-            ${key}:
-            - ${value}\n
-        `;
-    });
+${getGermanKey(key)}:
+- ${Array.isArray(value) ? value.join(', ') : value}\n
+`;
+    }
 
     const mailtoLink = `mailto:?subject=Kochduell Infos&body=${encodeURIComponent(emailBody)}`;
     window.open(mailtoLink);
