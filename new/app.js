@@ -214,8 +214,9 @@ function secondSelectFill(firstSelectId, secondSelectId) {
   
     // Update the summary div with the formDataDiv
     const summaryDiv = document.getElementById('summary');
+    const summaryWrapperDiv = document.getElementById("summary-wrapper")
     form.style.display = "none"
-    summaryDiv.style.display = "block"
+    summaryWrapperDiv.style.display = "flex"
     summaryDiv.innerHTML = '';
     summaryDiv.appendChild(formDataDiv);
   }
@@ -230,6 +231,24 @@ function secondSelectFill(firstSelectId, secondSelectId) {
         'when': 'Wann soll es stattfinden?',
         'members': 'Wer kocht mit?'
     };
-  
+
     return germanKeys[key] || key;
-  }
+}
+
+function openEmailWithSummary() {
+    const summaryTable = document.querySelector('#summary table');
+    const tableRows = summaryTable.querySelectorAll('tbody tr');
+    let emailBody = '';
+  
+    tableRows.forEach(row => {
+        const key = row.querySelector('td:first-child').textContent;
+        const value = row.querySelector('td:last-child').textContent;
+        emailBody += `
+            ${key}:
+            - ${value}\n
+        `;
+    });
+  
+    const mailtoLink = `mailto:?subject=Kochduell Infos&body=${encodeURIComponent(emailBody)}`;
+    window.open(mailtoLink);
+}
