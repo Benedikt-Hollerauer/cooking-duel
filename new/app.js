@@ -98,7 +98,7 @@ window.onload = () => {
     for (let i = 0; i < numFields; i++) {
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = `Field ${i + 1}`;
+        input.placeholder = `Teilnehmer ${i + 1}`;
         dynamicFieldsDiv.appendChild(input);
     }
 }
@@ -110,7 +110,7 @@ numFieldsInput.addEventListener('input', () => {
     for (let i = 0; i < numFields; i++) {
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = `Field ${i + 1}`;
+        input.placeholder = `Teilnehmer ${i + 1}`;
         dynamicFieldsDiv.appendChild(input);
     }
 });
