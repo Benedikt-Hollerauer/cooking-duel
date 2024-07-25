@@ -90,6 +90,19 @@ function fixStepIndicator(n) {
 const numFieldsInput = document.getElementById('num-fields');
 const dynamicFieldsDiv = document.getElementById('members');
 
+window.onload = () => {
+    const numFields = numFieldsInput.value;
+    dynamicFieldsDiv.innerHTML = '';
+    console.log("test members")
+
+    for (let i = 0; i < numFields; i++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = `Field ${i + 1}`;
+        dynamicFieldsDiv.appendChild(input);
+    }
+}
+
 numFieldsInput.addEventListener('input', () => {
     const numFields = numFieldsInput.value;
     dynamicFieldsDiv.innerHTML = '';
