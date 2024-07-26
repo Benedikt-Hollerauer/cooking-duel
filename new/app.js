@@ -200,6 +200,13 @@ function secondSelectFill(firstSelectId, secondSelectId) {
     }
 }
 
+function getSelectedValuesFromInputCheckboxes(inputName) {
+    const checkboxes = document.querySelectorAll('input[name="'+inputName+'"]:checked');
+    const selectedValues = Array.from(checkboxes).map(checkbox => checkbox.value);
+    console.log(selectedValues);
+    return selectedValues
+}
+
 // Function to create a summary and store it in the state object
 function createSummary() {
     const form = document.getElementById('regForm');
@@ -207,11 +214,16 @@ function createSummary() {
     const formDataMap = new Map(formData.entries());
     const formDataObj = Object.fromEntries(formDataMap);
 
+    const which = getSelectedValuesFromInputCheckboxes("which")
+    const whatHasToBeDone = getSelectedValuesFromInputCheckboxes("what-has-to-be-done")
+
     // Get the dynamic input fields
     const dynamicFields = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
 
     // Store the dynamic fields in a list
     formDataObj['members'] = dynamicFields;
+    formDataObj['what-has-to-be-done'] = whatHasToBeDone;
+    formDataObj['which'] = which;
 
     // Store the summary data in the state object
     state.summary = formDataObj;
