@@ -16,20 +16,30 @@
             <div id="members"></div>
         </div>
         <div class="tab">
-            <b>Welche Gerichte sollen es sein?</b>
-            <select name="which" id="dropdown-input" name="dropdown-input">
-                <option>Vorspeise</option>
-                <option>Zwischengang</option>
-                <option>Hauptgang</option>
-                <option>Nachspeise</option>
-            </select>
+            <fieldset>
+                <legend>Welche Gerichte sollen es sein?</legend>
+                <input type="checkbox" id="vorspeise" name="which" value="Vorspeise">
+                <label for="vorspeise">Vorspeise</label>
+                <br>
+                <input type="checkbox" id="zwischengang" name="which" value="Zwischengang">
+                <label for="zwischengang">Zwischengang</label>
+                <br>
+                <input type="checkbox" id="hauptgang" name="which" value="Hauptgang">
+                <label for="hauptgang">Hauptgang</label>
+                <br>
+                <input type="checkbox" id="nachspeise" name="which" value="Nachspeise">
+                <label for="nachspeise">Nachspeise</label>
+            </fieldset>
         </div>
         <div class="tab">
-            <b>Was muss alles getan werden?</b>
-            <select name="what-has-to-be-done" id="dropdown-input" name="dropdown-input">
-                <option>Essen</option>
-                <option>Getränk</option>
-            </select>
+            <fieldset>
+                <legend>Was muss alles getan werden?</legend>
+                <input type="checkbox" id="essen" name="what-has-to-be-done" value="Essen">
+                <label for="essen">Essen</label>
+                <br>
+                <input type="checkbox" id="getränk" name="what-has-to-be-done" value="Getränk">
+                <label for="getränk">Getränk</label>
+            </fieldset>
         </div>
         <div class="tab">
             <b>Länderauswahl</b>
