@@ -155,12 +155,49 @@ function getCountriesFromName(region) {
     const international = [
         "Afrika",
         "Asien",
-        "Australien",
+        "Ozeanien",
         "Nordamerika",
-        "Russland",
-        "Skandinavien",
         "Südamerika"
     ];
+
+    const southernAmerica = [
+        "Brasilien",
+        "Argentinien",
+        "Kolumbien",
+        "Chile",
+        "Paraguay"
+    ]
+
+    const northernAmerica = [
+        "USA",
+        "Mexiko",
+        "Kanada",
+        "Kuba",
+        "Jamaika"
+    ]
+
+    const ociania = [
+        "Australien",
+        "Fidschi",
+        "Neuseeland"
+    ]
+
+    const asia = [
+        "China",
+        "Japan",
+        "Indien",
+        "Russland",
+        "VAE",
+        "Türkei"
+    ]
+
+    const africa = [
+        "Marokko",
+        "Ägypten",
+        "Südafrika",
+        "Mittelafrika",
+        "Madagaskar"
+    ]
 
     switch (region) {
         case "Deutsch":
@@ -169,6 +206,16 @@ function getCountriesFromName(region) {
             return europa;
         case "International":
             return international;
+        case "Nordamerika":
+            return northernAmerica;
+        case "Südamerika":
+            return southernAmerica;
+        case "Afrika":
+            return africa;
+        case "Asien":
+            return asia;
+        case "Ozeanien":
+            return ociania;
         default:
             return europa;
     }
