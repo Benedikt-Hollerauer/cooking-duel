@@ -43,12 +43,13 @@
         </div>
         <div class="tab">
             <b>Länderauswahl</b>
-            <select  id="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
+            <select id="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
                 <option>Deutsch</option>
                 <option>Europäisch</option>
                 <option>International</option>
               </select>
-              <select name="country-selection" id="further-country-selection" style="display: none;"></select>
+            <select id="further-country-selection" style="display: none;" onchange="thirdSelectFill('country-selection', 'further-country-selection', 'third-country-selection')"></select>
+            <select id="third-country-selection" style="display: none;"></select>
         </div>
         <div class="tab">
             <b>Wo soll das Kochduell stattfinden?</b>

@@ -247,6 +247,24 @@ function secondSelectFill(firstSelectId, secondSelectId) {
     }
 }
 
+function thirdSelectFill(firstSelectId, secondSelectId, thirdSelectId) {
+    const secondSelect = document.getElementById(secondSelectId);
+    const thirdSelect = document.getElementById(thirdSelectId);
+    thirdSelect.innerHTML = '';
+    const selectedValue = secondSelect.value;
+    const firstSelectValue = document.getElementById(firstSelectId).value;
+    if(firstSelectValue == "International") {
+        const countries = getCountriesFromName(selectedValue);
+        countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.text = country;
+        thirdSelect.add(option);
+        });
+        thirdSelect.style.display = 'block';
+    }
+  }
+
 function getSelectedValuesFromInputCheckboxes(inputName) {
     const checkboxes = document.querySelectorAll('input[name="'+inputName+'"]:checked');
     const selectedValues = Array.from(checkboxes).map(checkbox => checkbox.value);
