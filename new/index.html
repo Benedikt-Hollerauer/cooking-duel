@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html>
-
-<head lang="de-de">
+<html lang="de-de">
+<head>
     <link href="app.css" rel="stylesheet">
     <title>Kochduell</title>
 </head>
-
 <body>
-    <form id="regForm" onsubmit="createSummary()">
+    <form id="regForm" onsubmit="createSummary(); return false;">
         <h1>Kochduell</h1>
-        <!-- One "tab" for each step in the form: -->
         <div class="tab">
             <label for="num-fields"><b>Wer kocht mit?</b></label>
             <input type="range" id="num-fields" min="2" max="12" value="2">
@@ -18,48 +15,54 @@
         <div class="tab">
             <fieldset>
                 <legend>Welche Gerichte sollen es sein?</legend>
-                <input type="checkbox" id="vorspeise" name="which" value="Vorspeise">
-                <label for="vorspeise">Vorspeise</label>
-                <br>
-                <input type="checkbox" id="zwischengang" name="which" value="Zwischengang">
-                <label for="zwischengang">Zwischengang</label>
-                <br>
-                <input type="checkbox" id="hauptgang" name="which" value="Hauptgang">
-                <label for="hauptgang">Hauptgang</label>
-                <br>
-                <input type="checkbox" id="nachspeise" name="which" value="Nachspeise">
-                <label for="nachspeise">Nachspeise</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="vorspeise" name="which" value="Vorspeise" checked>
+                    <label for="vorspeise">Vorspeise</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="zwischengang" name="which" value="Zwischengang">
+                    <label for="zwischengang">Zwischengang</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="hauptgang" name="which" value="Hauptgang">
+                    <label for="hauptgang">Hauptgang</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="nachspeise" name="which" value="Nachspeise">
+                    <label for="nachspeise">Nachspeise</label>
+                </div>
             </fieldset>
         </div>
         <div class="tab">
             <fieldset>
                 <legend>Was muss alles getan werden?</legend>
-                <input type="checkbox" id="essen" name="what-has-to-be-done" value="Essen">
-                <label for="essen">Essen</label>
-                <br>
-                <input type="checkbox" id="getränk" name="what-has-to-be-done" value="Getränk">
-                <label for="getränk">Getränk</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="essen" name="what-has-to-be-done" value="Essen" checked>
+                    <label for="essen">Essen</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="getränk" name="what-has-to-be-done" value="Getränk">
+                    <label for="getränk">Getränk</label>
+                </div>
             </fieldset>
         </div>
         <div class="tab">
-            <b>Länderauswahl</b>
+            <label for="country-selection"><b>Länderauswahl</b></label>
             <select id="country-selection" onchange="secondSelectFill('country-selection', 'further-country-selection')">
                 <option>Auswählen</option>
                 <option>Deutschland</option>
                 <option>Europäisch</option>
                 <option>International</option>
-              </select>
+            </select>
             <select id="further-country-selection" style="display: none;" onchange="thirdSelectFill('country-selection', 'further-country-selection', 'third-country-selection')"></select>
             <select id="third-country-selection" style="display: none;"></select>
         </div>
         <div class="tab">
-            <b>Wo soll das Kochduell stattfinden?</b>
-            <label for="location">Standort: </label> 
-            <input name="location" maxlength="30">
+            <label for="location"><b>Wo soll das Kochduell stattfinden?</b></label>
+            <input type="text" id="location" name="location" maxlength="30">
         </div>
         <div class="tab">
-            <b>Wann soll es stattfinden?</b>
-            <label for="datetime">Enter a date and time:</label>
+            <label for="datetime"><b>Wann soll es stattfinden?</b></label>
             <input type="datetime-local" id="datetime" name="when">
         </div>
         <div style="overflow:auto;">
@@ -68,7 +71,6 @@
                 <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
             </div>
         </div>
-        <!-- Circles which indicates the steps of the form: -->
         <div style="text-align:center;margin-top:40px;">
             <span class="step"></span>
             <span class="step"></span>
@@ -78,11 +80,18 @@
             <span class="step"></span>
         </div>
     </form>
-    <div id="summary-wrapper">
-        <div id="summary"></div>
+    <div id="summary-wrapper" style="display:none;">
+        <table id="summary-table">
+            <thead>
+                <tr>
+                    <th>Kategorie</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody id="summary"></tbody>
+        </table>
         <button id="send-email-button" onclick="openEmailWithSummary()">Versende eine Email mit diesen Daten</button>
     </div>
     <script src="app.js"></script>
 </body>
-
 </html>

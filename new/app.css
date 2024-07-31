@@ -3,80 +3,73 @@
 }
 
 body {
-    background-color: #f1f1f1;
+    background-color: #f9f9f9;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
 }
 
-#regForm {
-    background-color: #ffffff;
-    margin: 100px auto;
-    font-family: Raleway;
-    padding: 40px;
-    width: 70%;
-    min-width: 300px;
+#regForm, #summary-wrapper {
+    background-color: #fff;
+    margin: 40px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-#summary-wrapper {
-    display: none;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #ffffff;
-    margin: 100px auto;
-    font-family: Raleway;
-    padding: 40px;
-    width: 70%;
-    min-width: 300px;
-  }
 
 h1 {
     text-align: center;
+    color: #333;
 }
 
-input {
-    padding: 10px;
+input, select {
     width: 100%;
-    font-size: 17px;
-    font-family: Raleway;
-    border: 1px solid #aaaaaa;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-/* Mark input boxes that gets an error on validation: */
 input.invalid {
     background-color: #ffdddd;
 }
 
-/* Hide all steps by default: */
 .tab {
     display: none;
 }
 
 button {
-    background-color: #04AA6D;
-    color: #ffffff;
+    background-color: #5cb85c;
+    color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 17px;
-    font-family: Raleway;
+    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
+    margin: 5px;
 }
 
 button:hover {
-    opacity: 0.8;
+    background-color: #4cae4c;
 }
 
 #prevBtn {
-    background-color: #bbbbbb;
+    background-color: #bbb;
 }
 
-/* Make circles that indicate the steps of the form: */
 .step {
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbbbbb;
+    background-color: #bbb;
     border: none;
     border-radius: 50%;
     display: inline-block;
@@ -87,7 +80,43 @@ button:hover {
     opacity: 1;
 }
 
-/* Mark the steps that are finished and valid: */
 .step.finish {
-    background-color: #04AA6D;
+    background-color: #5cb85c;
+}
+
+.checkbox-group {
+    display: flex;    
+    align-items: center;
+    margin-bottom: 8px;
+    justify-content: flex-start; /* Ensure left alignment */
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+#summary-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#summary-table th, #summary-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+#summary-table th {
+    background-color: #f2f2f2;
+}
+
+#send-email-button {
+    margin-top: 20px;
 }
