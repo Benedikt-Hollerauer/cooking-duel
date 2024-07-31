@@ -93,7 +93,6 @@ const dynamicFieldsDiv = document.getElementById('members');
 window.onload = () => {
     const numFields = numFieldsInput.value;
     dynamicFieldsDiv.innerHTML = '';
-    console.log("test members")
 
     for (let i = 0; i < numFields; i++) {
         const input = document.createElement('input');
@@ -200,7 +199,7 @@ function getCountriesFromName(region) {
     ]
 
     switch (region) {
-        case "Deutsch":
+        case "Deutschland":
             return german;
         case "Europäisch":
             return europa;
@@ -239,10 +238,8 @@ function secondSelectFill(firstSelectId, secondSelectId) {
             secondSelect.add(option);
         });
 
-        // Show second select
         secondSelect.style.display = 'block';
     } else {
-        // Hide second select
         secondSelect.style.display = 'none';
     }
 }
@@ -256,10 +253,10 @@ function thirdSelectFill(firstSelectId, secondSelectId, thirdSelectId) {
     if(firstSelectValue == "International") {
         const countries = getCountriesFromName(selectedValue);
         countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = country;
-        option.text = country;
-        thirdSelect.add(option);
+            const option = document.createElement('option');
+            option.value = country;
+            option.text = country;
+            thirdSelect.add(option);
         });
         thirdSelect.style.display = 'block';
     }
@@ -268,7 +265,6 @@ function thirdSelectFill(firstSelectId, secondSelectId, thirdSelectId) {
 function getSelectedValuesFromInputCheckboxes(inputName) {
     const checkboxes = document.querySelectorAll('input[name="'+inputName+'"]:checked');
     const selectedValues = Array.from(checkboxes).map(checkbox => checkbox.value);
-    console.log(selectedValues);
     return selectedValues
 }
 
