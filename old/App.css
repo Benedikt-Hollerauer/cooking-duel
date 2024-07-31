@@ -1,0 +1,42 @@
+#accordion button:focus,
+#accordion button:hover {
+	background-color: #C1E5E1;
+}
+
+#accordion button[aria-expanded="true"]:after {
+	content: " \2212";
+	font-weight: bold;
+}
+
+#accordion button[aria-expanded="false"]:after {
+	content: " \002B";
+}
+
+#accordion div {
+	padding: 0 1em;
+	overflow: hidden;
+	text-align: center;
+	font-family: "Century"; 
+}
+body {
+      background-image: url('Background_Pepperoni_02.JPG');
+	  background-repeat: no-repeat;
+	  background-size: cover;"
+}
+[aria-hidden="true"] {
+	height: 0;
+}
+
+[aria-hidden="false"] {
+	height: 100%;
+}
+p { 
+font-family: "Century"; 
+}
+Button { 
+font-family: "Engravers MT";
+}
+Input { 
+font-family: "Engravers MT"; 
+color: grey; 
+}
