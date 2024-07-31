@@ -270,28 +270,25 @@ function getSelectedValuesFromInputCheckboxes(inputName) {
 
 // Function to create a summary and store it in the state object
 function createSummary() {
-    const form = document.getElementById('regForm');
-    const formData = new FormData(form);
-    const formDataMap = new Map(formData.entries());
-    const formDataObj = Object.fromEntries(formDataMap);
-
-    const which = getSelectedValuesFromInputCheckboxes("which")
-    const whatHasToBeDone = getSelectedValuesFromInputCheckboxes("what-has-to-be-done")
-
-    // Get the dynamic input fields
-    const dynamicFields = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
-
-    // Store the dynamic fields in a list
-    formDataObj['members'] = dynamicFields;
-    formDataObj['what-has-to-be-done'] = whatHasToBeDone;
-    formDataObj['which'] = which;
-
-    // Store the summary data in the state object
+    const formData = new FormData(document.getElementById('regForm'));
+    const formDataObj = Object.fromEntries(formData);
+    
+    const thirdSelection = document.getElementById('third-country-selection');
+    const secondSelection = document.getElementById('further-country-selection');
+    const firstCountrySelection = document.getElementById('country-selection')
+    
+    formDataObj['country-selection'] = thirdSelection.style.display !== 'none' ? thirdSelection.value :
+                                       secondSelection.style.display !== 'none' ? secondSelection.value :
+                                       firstCountrySelection.value == 'Auswählen' ? "Deutschland" : firstCountrySelection.value;
+    
+    formDataObj['members'] = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
+    formDataObj['what-has-to-be-done'] = getSelectedValuesFromInputCheckboxes("what-has-to-be-done");
+    formDataObj['which'] = getSelectedValuesFromInputCheckboxes("which");
+    
     state.summary = formDataObj;
-
-    // Update the UI with the summary
     renderSummary();
-}
+  }
+  
 
 // Function to render the summary in the UI
 function renderSummary() {
