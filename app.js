@@ -94,6 +94,7 @@ function getCountriesFromName(region) {
     const ociania = ["Australien", "Fidschi", "Neuseeland"];
     const asia = ["China", "Japan", "Indien", "Russland", "VAE", "Türkei"];
     const africa = ["Marokko", "Ägypten", "Südafrika", "Mittelafrika", "Madagaskar"];
+    const all = german.concat(europa, southernAmerica, northernAmerica, ociania, asia, africa);
     switch (region) {
         case "Deutschland":
             return german;
@@ -111,6 +112,8 @@ function getCountriesFromName(region) {
             return asia;
         case "Ozeanien":
             return ociania;
+        case "all":
+            return all;
         default:
             return europa;
     }
@@ -121,7 +124,7 @@ function secondSelectFill(firstSelectId, secondSelectId) {
     const secondSelect = document.getElementById(secondSelectId);
     secondSelect.innerHTML = '';
     const selectedValue = firstSelect.value;
-    if (selectedValue) {
+    if (selectedValue && selectedValue != "Zufallsauswahl") {
         const countries = getCountriesFromName(selectedValue);
         countries.forEach(country => {
             const option = document.createElement('option');
@@ -159,15 +162,30 @@ function getSelectedValuesFromInputCheckboxes(inputName) {
     return selectedValues;
 }
 
+function getRandomItem(array) {
+    return array[
+        Math.floor(
+            Math.random() * array.length
+        )
+    ];
+}
+
 function createSummary() {
     const formData = new FormData(document.getElementById('regForm'));
     const formDataObj = Object.fromEntries(formData);
     const thirdSelection = document.getElementById('third-country-selection');
     const secondSelection = document.getElementById('further-country-selection');
     const firstCountrySelection = document.getElementById('country-selection')
-    formDataObj['country-selection'] = thirdSelection.style.display !== 'none' ? thirdSelection.value :
-        secondSelection.style.display !== 'none' ? secondSelection.value :
-            firstCountrySelection.value == 'Auswählen' ? "Deutschland" : firstCountrySelection.value;
+    if(firstCountrySelection.value = "Zufallsauswahl") {
+        allCountries = getCountriesFromName("all")
+        randomCountry = getRandomItem(allCountries)
+        console.log(randomCountry)
+        formDataObj['country-selection'] = randomCountry
+    } else {
+        formDataObj['country-selection'] = thirdSelection.style.display !== 'none' ? thirdSelection.value :
+            secondSelection.style.display !== 'none' ? secondSelection.value :
+                firstCountrySelection.value == 'Auswählen' ? "Deutschland" : firstCountrySelection.value;
+    }
     formDataObj['members'] = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
     formDataObj['what-has-to-be-done'] = getSelectedValuesFromInputCheckboxes("what-has-to-be-done");
     formDataObj['which'] = getSelectedValuesFromInputCheckboxes("which");
