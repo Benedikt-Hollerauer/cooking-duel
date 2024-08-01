@@ -13,7 +13,7 @@
             <div id="members"></div>
         </div>
         <div class="tab">
-            <fieldset>
+            <fieldset class="checkbox-alignment">
                 <legend>Welche Gerichte sollen es sein?</legend>
                 <div class="checkbox-group">
                     <input type="checkbox" id="vorspeise" name="which" value="Vorspeise" checked>
@@ -34,7 +34,7 @@
             </fieldset>
         </div>
         <div class="tab">
-            <fieldset>
+            <fieldset class="checkbox-alignment">
                 <legend>Was muss alles getan werden?</legend>
                 <div class="checkbox-group">
                     <input type="checkbox" id="essen" name="what-has-to-be-done" value="Essen" checked>
@@ -81,13 +81,8 @@
         </div>
     </form>
     <div id="summary-wrapper" style="display:none;">
-        <table id="summary-table">
-            <thead>
-                <tr>
-                    <th>Kategorie</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
+        <h1>Zusammenfassung</h1>
+        <table id="summary-table" class="checkbox-alignment">
             <tbody id="summary"></tbody>
         </table>
         <button id="send-email-button" onclick="openEmailWithSummary()">Versende eine Email mit diesen Daten</button>

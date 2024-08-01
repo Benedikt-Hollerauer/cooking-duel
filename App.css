@@ -104,7 +104,6 @@ button:hover {
 #summary-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 #summary-table th, #summary-table td {
@@ -119,4 +118,10 @@ button:hover {
 
 #send-email-button {
     margin-top: 20px;
+}
+
+.checkbox-alignment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

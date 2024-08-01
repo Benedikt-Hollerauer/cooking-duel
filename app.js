@@ -301,19 +301,19 @@ function renderSummary() {
 
     // Create the table
     const table = document.createElement('table');
-    const thead = document.createElement('thead');
+    //const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
 
     // Create the table header row
-    const headerRow = document.createElement('tr');
-    const headerCell = document.createElement('th');
-    headerCell.textContent = 'Schlüssel';
-    headerRow.appendChild(headerCell);
-    const valueHeaderCell = document.createElement('th');
-    valueHeaderCell.textContent = 'Wert';
-    headerRow.appendChild(valueHeaderCell);
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
+    //const headerRow = document.createElement('tr');
+    //const headerCell = document.createElement('th');
+    //headerCell.textContent = 'Schlüssel';
+    //headerRow.appendChild(headerCell);
+    //const valueHeaderCell = document.createElement('th');
+    //valueHeaderCell.textContent = 'Wert';
+    //headerRow.appendChild(valueHeaderCell);
+    //thead.appendChild(headerRow);
+    //table.appendChild(thead);
 
     // Create the table body rows
     for (const [key, value] of Object.entries(state.summary)) {
