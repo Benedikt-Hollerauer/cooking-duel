@@ -1,26 +1,21 @@
-let currentTab = 0; // Current tab is set to be the first tab (0)
-const state = {
-    summary: {}
-};
+let currentTab = 0;
+const state = { summary: {} };
 
-showTab(currentTab); // Display the current tab
+showTab(currentTab);
 
 function showTab(n) {
     const tabs = document.getElementsByClassName("tab");
     tabs[n].style.display = "block";
-
     if (n === 0) {
         document.getElementById("prevBtn").style.display = "none";
     } else {
         document.getElementById("prevBtn").style.display = "inline";
     }
-
     if (n === tabs.length - 1) {
         document.getElementById("nextBtn").innerHTML = "Submit";
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
     }
-
     fixStepIndicator(n);
 }
 
@@ -95,6 +90,7 @@ function getCountriesFromName(region) {
     const asia = ["China", "Japan", "Indien", "Russland", "VAE", "Türkei"];
     const africa = ["Marokko", "Ägypten", "Südafrika", "Mittelafrika", "Madagaskar"];
     const all = german.concat(europa, southernAmerica, northernAmerica, ociania, asia, africa);
+
     switch (region) {
         case "Deutschland":
             return german;
@@ -163,11 +159,7 @@ function getSelectedValuesFromInputCheckboxes(inputName) {
 }
 
 function getRandomItem(array) {
-    return array[
-        Math.floor(
-            Math.random() * array.length
-        )
-    ];
+    return array[Math.floor(Math.random() * array.length)];
 }
 
 function createSummary() {
@@ -175,20 +167,32 @@ function createSummary() {
     const formDataObj = Object.fromEntries(formData);
     const thirdSelection = document.getElementById('third-country-selection');
     const secondSelection = document.getElementById('further-country-selection');
-    const firstCountrySelection = document.getElementById('country-selection')
-    if(firstCountrySelection.value = "Zufallsauswahl") {
-        allCountries = getCountriesFromName("all")
-        randomCountry = getRandomItem(allCountries)
-        console.log(randomCountry)
-        formDataObj['country-selection'] = randomCountry
+    const firstCountrySelection = document.getElementById('country-selection');
+
+    if (firstCountrySelection.value === "Zufallsauswahl") {
+        const allCountries = getCountriesFromName("all");
+        const uniqueCountries = [];
+        const members = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
+
+        members.forEach(() => {
+            let randomCountry;
+            do {
+                randomCountry = getRandomItem(allCountries);
+            } while (uniqueCountries.includes(randomCountry));
+            uniqueCountries.push(randomCountry);
+        });
+
+        formDataObj['country-selection'] = uniqueCountries;
     } else {
         formDataObj['country-selection'] = thirdSelection.style.display !== 'none' ? thirdSelection.value :
             secondSelection.style.display !== 'none' ? secondSelection.value :
-                firstCountrySelection.value == 'Auswählen' ? "Deutschland" : firstCountrySelection.value;
+                firstCountrySelection.value === 'Auswählen' ? "Deutschland" : firstCountrySelection.value;
     }
+
     formDataObj['members'] = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
     formDataObj['what-has-to-be-done'] = getSelectedValuesFromInputCheckboxes("what-has-to-be-done");
     formDataObj['which'] = getSelectedValuesFromInputCheckboxes("which");
+
     state.summary = formDataObj;
     renderSummary();
 }
@@ -198,20 +202,26 @@ function renderSummary() {
     const summaryWrapperDiv = document.getElementById("summary-wrapper");
     const form = document.getElementById('regForm');
     summaryDiv.innerHTML = '';
+
     const table = document.createElement('table');
     const tbody = document.createElement('tbody');
+
     for (const [key, value] of Object.entries(state.summary)) {
         const row = document.createElement('tr');
         const keyCell = document.createElement('td');
         keyCell.textContent = getGermanKey(key);
         row.appendChild(keyCell);
+
         const valueCell = document.createElement('td');
         valueCell.textContent = Array.isArray(value) ? value.join(', ') : value;
         row.appendChild(valueCell);
+
         tbody.appendChild(row);
     }
+
     table.appendChild(tbody);
     summaryDiv.appendChild(table);
+
     form.style.display = "none";
     summaryWrapperDiv.style.display = "flex";
 }
