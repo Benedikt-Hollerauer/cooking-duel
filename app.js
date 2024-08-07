@@ -169,11 +169,12 @@ function createSummary() {
     const secondSelection = document.getElementById('further-country-selection');
     const firstCountrySelection = document.getElementById('country-selection');
 
-    if (firstCountrySelection.value === "Zufallsauswahl") {
-        const allCountries = getCountriesFromName("all");
-        const uniqueCountries = [];
-        const members = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
+    const members = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
+    const selectedDishes = getSelectedValuesFromInputCheckboxes("which");
+    const allCountries = getCountriesFromName("all");
+    const uniqueCountries = [];
 
+    if (firstCountrySelection.value === "Zufallsauswahl") {
         members.forEach(() => {
             let randomCountry;
             do {
@@ -181,17 +182,29 @@ function createSummary() {
             } while (uniqueCountries.includes(randomCountry));
             uniqueCountries.push(randomCountry);
         });
-
-        formDataObj['country-selection'] = uniqueCountries;
     } else {
-        formDataObj['country-selection'] = thirdSelection.style.display !== 'none' ? thirdSelection.value :
+        uniqueCountries.push(
+            thirdSelection.style.display !== 'none' ? thirdSelection.value :
             secondSelection.style.display !== 'none' ? secondSelection.value :
-                firstCountrySelection.value === 'Auswählen' ? "Deutschland" : firstCountrySelection.value;
+            firstCountrySelection.value === 'Auswählen' ? "Deutschland" : firstCountrySelection.value
+        );
     }
 
-    formDataObj['members'] = Array.from(document.querySelectorAll('#members input')).map(input => input.value);
+    const assignments = [];
+    for (let i = 0; i < Math.max(members.length, selectedDishes.length); i++) {
+        assignments.push({
+            member: members[i % members.length],
+            dish: selectedDishes[i % selectedDishes.length],
+            country: uniqueCountries[i % uniqueCountries.length]
+        });
+    }
+
+    formDataObj['assignments'] = assignments;
+
+    // Include additional details in the summary
+    formDataObj['location'] = formDataObj['location'] || "Nicht angegeben";
+    formDataObj['when'] = formDataObj['when'] || "Nicht angegeben";
     formDataObj['what-has-to-be-done'] = getSelectedValuesFromInputCheckboxes("what-has-to-be-done");
-    formDataObj['which'] = getSelectedValuesFromInputCheckboxes("which");
 
     state.summary = formDataObj;
     renderSummary();
@@ -204,48 +217,76 @@ function renderSummary() {
     summaryDiv.innerHTML = '';
 
     const table = document.createElement('table');
+    const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
 
-    for (const [key, value] of Object.entries(state.summary)) {
-        const row = document.createElement('tr');
-        const keyCell = document.createElement('td');
-        keyCell.textContent = getGermanKey(key);
-        row.appendChild(keyCell);
+    const headerRow = document.createElement('tr');
+    ['Teilnehmer', 'Gericht', 'Land'].forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
 
-        const valueCell = document.createElement('td');
-        valueCell.textContent = Array.isArray(value) ? value.join(', ') : value;
-        row.appendChild(valueCell);
+    state.summary.assignments.forEach(assignment => {
+        const row = document.createElement('tr');
+
+        const memberCell = document.createElement('td');
+        memberCell.textContent = assignment.member;
+        row.appendChild(memberCell);
+
+        const dishCell = document.createElement('td');
+        dishCell.textContent = assignment.dish;
+        row.appendChild(dishCell);
+
+        const countryCell = document.createElement('td');
+        countryCell.textContent = assignment.country;
+        row.appendChild(countryCell);
 
         tbody.appendChild(row);
-    }
+    });
 
+    table.appendChild(thead);
     table.appendChild(tbody);
     summaryDiv.appendChild(table);
+
+    // Format the date
+    const formattedDate = new Date(state.summary.when).toLocaleString('de-DE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    // Add additional details below the table
+    const detailsDiv = document.createElement('div');
+    detailsDiv.innerHTML = `
+        <p><strong>Standort:</strong> ${state.summary.location}</p>
+        <p><strong>Wann:</strong> ${formattedDate}</p>
+        <p><strong>Was muss getan werden:</strong> ${state.summary['what-has-to-be-done'].join(', ')}</p>
+    `;
+    summaryDiv.appendChild(detailsDiv);
 
     form.style.display = "none";
     summaryWrapperDiv.style.display = "flex";
 }
 
-function getGermanKey(key) {
-    const germanKeys = {
-        'what-has-to-be-done': 'Was muss getan werden?',
-        'which': 'Welche Gerichte sollen es sein?',
-        'country-selection': 'Länderauswahl',
-        'location': 'Standort',
-        'when': 'Wann soll es stattfinden?',
-        'members': 'Wer kocht mit?'
-    };
-    return germanKeys[key] || key;
-}
-
 function openEmailWithSummary() {
-    let emailBody = '';
-    for (const [key, value] of Object.entries(state.summary)) {
-        emailBody += `
-${getGermanKey(key)}:
-- ${Array.isArray(value) ? value.join(', ') : value}\n
-`;
-    }
+    let emailBody = 'Zusammenfassung:\n\n';
+    state.summary.assignments.forEach(assignment => {
+        emailBody += `Teilnehmer: ${assignment.member}\nGericht: ${assignment.dish}\nLand: ${assignment.country}\n\n`;
+    });
+    emailBody += `Standort: ${state.summary.location}\n`;
+    emailBody += `Wann: ${new Date(state.summary.when).toLocaleString('de-DE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    })}\n`;
+    emailBody += `Was muss getan werden: ${state.summary['what-has-to-be-done'].join(', ')}\n`;
+
     const mailtoLink = `mailto:?subject=Kochduell Infos&body=${encodeURIComponent(emailBody)}`;
     window.open(mailtoLink);
 }
